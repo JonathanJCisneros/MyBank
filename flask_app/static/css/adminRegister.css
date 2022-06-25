@@ -1,0 +1,86 @@
+* {
+    margin: 0px auto;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#return {
+    text-align: center;
+}
+
+.container {
+    background-color: #4533c6;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    box-shadow: 0px 0px 100px black;
+}
+
+.header {
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 70px;
+    font-weight: bold;
+    color: black;
+}
+
+.body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.register {
+    width: 500px;
+    background-color: gray;
+    padding: 40px;
+    margin-top: 45px;
+    margin-bottom: 100px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 25px black;
+}
+
+#flash {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+.register h2 {
+    color: white;
+}
+
+.register label {
+    color: yellow;
+}
+
+.register p {
+    color: red;
+    font-weight: bold;
+}
+
+.login {
+    width: 500px;
+    background-color: gray;
+    padding: 40px;
+    margin-top: 45px;
+    margin-bottom: 100px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 25px black;
+}
+
+.login h1 {
+    color: limegreen;
+    font-weight: bold;
+
+}
+
+.login label {
+    color: white;
+}
+
+.login h2 {
+    color: red;
+    font-weight: bold;
+}
