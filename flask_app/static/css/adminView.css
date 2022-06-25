@@ -22,11 +22,14 @@
     color: yellow;
 }
 
-#home {
-    margin-right: 20px;
+#title {
+    margin-top: 50px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
 }
 
-.list {
+.form {
     padding: 40px;
     background-color: lightgray;
     width: 1000px;
@@ -34,20 +37,22 @@
     margin-top: 50px;
 }
 
-.list h1 {
-    color: green;
-    font-weight: bold;
+.imgs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 800px;
+    margin: 20px;
 }
 
-.table th {
-    font-size: 20px;
-    color: #4533c6;
+.ssc {
+    background-color: peachpuff;
+    height: 150px;
+    width: 150px;
 }
 
-.table td {
-    font-weight: bold;
-}
-
-#view {
-    margin-right: 20px;
+.id {
+    background-color: peachpuff;
+    height: 150px;
+    width: 150px;
 }

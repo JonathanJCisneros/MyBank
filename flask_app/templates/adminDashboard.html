@@ -9,7 +9,39 @@
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/adminDashboard.css')}}">
     </head>
     <body>
-        <h1>This is working</h1>
-        <a href="/admin/logout" class="btn btn-danger">Logout</a>
+        <div class="container">
+            <div class="header">
+                <h1>Welcome {{session.first_name}}!</h1>
+                <p>(notifications)</p>
+                <div>
+                    <a href="/home" class="btn btn-secondary" id="home">Home</a>
+                    <a href="/admin/logout" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
+            <div class="list">
+                <h1>Client requests:</h1>
+                <table class="table table-striped table-hover" >
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Request Type</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kevin Orozco</td>
+                            <td>Checking</td>
+                            <td>10000</td>
+                            <td>
+                                <a href="/admin/view" class="btn btn-primary" id="view">View</a>
+                                <a href="/deny/(form_id)" class="btn btn-danger">Deny</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </body>
 </html>

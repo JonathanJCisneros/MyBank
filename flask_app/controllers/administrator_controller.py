@@ -70,3 +70,16 @@ def login():
 def logout():
     session.clear()
     return redirect("/admin")
+
+@app.route("/admin/view")
+def view_form():
+    if Administrator.validate_session():
+        return render_template("adminView.html")
+    else:
+        flash("You must login to see this information", "error_not_logged_in")
+        return redirect("/admin")
+    
+
+@app.route("/accept")
+def create_account():
+    return render_template("newAccount.html")
