@@ -41,8 +41,21 @@
     box-shadow: 0px 0px 25px black;
 }
 
+.code {
+    text-align: left;
+}
+
+.code input {
+    width: 100px;
+}
+
 #flash {
     text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+#pass-flash {
     color: red;
     font-weight: bold;
 }

@@ -43,6 +43,9 @@ class Administrator:
     @staticmethod
     def validate_register(data):
         isValid = True
+        if data['admin_password'] != 191982:
+            flash("Wrong passcode, try again!", "error_passcode")
+            isValid = False
         if data['first_name'] == "":
             flash("You must provide your first name.", "error_register_first_name" )
             isValid = False
