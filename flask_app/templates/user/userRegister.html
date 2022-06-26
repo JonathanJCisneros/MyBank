@@ -155,8 +155,8 @@
                         {% endfor %}
                     </div>
                     <div class="col-md-3">
-                        <label for="zip" class="form-label">Zip</label>
-                        <input type="text" class="form-control" id="zip" name="zip">
+                        <label for="zipcode" class="form-label">Zip</label>
+                        <input type="text" class="form-control" id="zipcode" name="zipcode">
                         {% for message in get_flashed_messages(category_filter = ["error_register_zip"]): %}
                             <p>{{message}}</p>
                         {% endfor %}

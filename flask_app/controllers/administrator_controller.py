@@ -8,6 +8,7 @@ from flask_app.models.administrator_model import Administrator
 def display_admin_register():
     return render_template("admin/adminRegister.html")
 
+
 @app.route("/admin_register", methods = ['POST'])
 def register_admin():
     if Administrator.validate_register(request.form) == True:
@@ -38,13 +39,6 @@ def register_admin():
     else:
         return redirect("/admin")
 
-@app.route("/admin/dashboard")
-def display_dashboard():
-    if Administrator.validate_session():
-        return render_template("admin/adminDashboard.html")
-    else:
-        flash("You must login to see this information", "error_not_logged_in")
-        return redirect("/admin")
 
 @app.route("/admin_login", methods = ['POST'])
 def login():
@@ -66,10 +60,22 @@ def login():
         session['pin'] = result.pin
         return redirect("/admin/dashboard")
 
+
+@app.route("/admin/dashboard")
+def display_dashboard():
+    if Administrator.validate_session():
+        return render_template("admin/adminDashboard.html")
+    else:
+        flash("You must login to see this information", "error_not_logged_in")
+        return redirect("/admin")
+
+
+
 @app.route("/admin/logout")
 def logout():
     session.clear()
     return redirect("/admin")
+
 
 @app.route("/admin/view")
 def view_form():
@@ -78,7 +84,7 @@ def view_form():
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/admin")
-    
+
 
 @app.route("/accept")
 def create_account():

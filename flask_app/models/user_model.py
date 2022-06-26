@@ -20,6 +20,28 @@ class User:
         self.loans = []
         self.cards = []
 
+    @classmethod
+    def get_one(cls, data):
+        query =  "SELECT * "
+        query += "FROM users "
+        query += "WHERE username = %(username)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        if len(result) > 0:
+            return cls(result[0])
+        else:
+            return None
+
+    @classmethod
+    def create_user(cls, data):
+        query =  "INSERT into users(first_name, last_name, email, password) "
+        query += "VALUES(%(first_name)s, %(last_name)s, %(email)s, %(password)s);"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
+
     @staticmethod
     def validate_register(data):
         isValid = True
@@ -59,7 +81,7 @@ class User:
         if data['state'] == "Choose...":
             flash("You must provide your State.", "error_register_state" )
             isValid = False
-        if len(data['zip']) < 5:
+        if len(data['zipcode']) != 5:
             flash("Invalid Zipcode", "error_register_zip")
             isValid = False
         if data['username'] == "":
@@ -77,3 +99,10 @@ class User:
         if data['password_confirmation'] != data['password']:
             flash("Your password confirmationan doesn't match.", "error_register_password_confirmation")
         return isValid
+
+    @staticmethod
+    def validate_session():
+        if "id" not in session:
+            return False
+        else:
+            return True
