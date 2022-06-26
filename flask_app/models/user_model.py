@@ -11,8 +11,13 @@ class User:
         self.id = data['id']
         self.first_name = data['first_name']
         self.last_name = data['last_name']
+        self.username = data['username']
         self.email = data['email']
         self.password = data['password']
+        self.date_of_birth = data['date_of_birth']
+        self.social_security = data['social_security']
+        self.phone_number = data['phone_number']
+        self.employment_status = data['employment_status']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.addresses = []
@@ -35,8 +40,8 @@ class User:
 
     @classmethod
     def create_user(cls, data):
-        query =  "INSERT into users(first_name, last_name, email, password) "
-        query += "VALUES(%(first_name)s, %(last_name)s, %(email)s, %(password)s);"
+        query =  "INSERT into users(first_name, last_name, email, phone_number, date_of_birth, social_security, employment_status, annual_income, username, password, administrators_id) "
+        query += "VALUES(%(first_name)s, %(last_name)s, %(email)s, %(phone_number)s, %(date_of_birth)s, %(social_security)s, %(employment_status)s, %(annual_income)s, %(username)s, %(password)s, %(administrators_id)s);"
 
         result = connectToMySQL(DATABASE).query_db(query, data)
 
@@ -48,14 +53,14 @@ class User:
         if data['first_name'] == "":
             flash("You must provide your first name.", "error_register_first_name" )
             isValid = False
-        if len(data['first_name']) < 3:
-            flash("Your first name must have at least 3 characters.", "error_register_first_name" )
+        if len(data['first_name']) < 2:
+            flash("Your first name must have at least 2 characters.", "error_register_first_name" )
             isValid = False
         if data['last_name'] == "":
             flash("You must provide your last name.", "error_register_last_name" )
             isValid = False
-        if len(data['last_name']) < 3:
-            flash("Your last name must have at least 3 characters.", "error_register_last_name" )
+        if len(data['last_name']) < 2:
+            flash("Your last name must have at least 2 characters.", "error_register_last_name" )
             isValid = False
         if data['email'] == "":
             flash("You must provide your email.", "error_register_email" )
@@ -81,7 +86,7 @@ class User:
         if data['state'] == "Choose...":
             flash("You must provide your State.", "error_register_state" )
             isValid = False
-        if len(data['zipcode']) != 5:
+        if len(data['zipcode']) < 5:
             flash("Invalid Zipcode", "error_register_zip")
             isValid = False
         if data['username'] == "":

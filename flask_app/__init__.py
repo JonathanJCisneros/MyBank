@@ -2,4 +2,4 @@ from flask import Flask
 
 app = Flask(__name__)
 app.secret_key = "secret"
-DATABASE = "my_bank_schema"
+DATABASE = "mybank_schema"

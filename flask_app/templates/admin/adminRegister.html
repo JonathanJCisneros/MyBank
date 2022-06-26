@@ -28,7 +28,7 @@
                     <div class="code">
                         <label for="admin_password" class="form-label">Passcode:</label>
                         <br>
-                        <input type="number" name="admin_password" class="form-control">
+                        <input type="text" name="admin_password" class="form-control">
                         {% for message in get_flashed_messages(category_filter = ["error_passcode"]): %}
                             <p id="pass-flash">{{message}}</p>
                         {% endfor %}

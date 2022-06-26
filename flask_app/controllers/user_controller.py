@@ -34,7 +34,8 @@ def register_user():
                 "employment_status" : request.form['employment_status'],
                 "annual_income" : request.form['annual_income'],
                 "username" : request.form['username'],
-                "password" : request.form['password']
+                "password" : request.form['password'],
+                "administrators_id" : request.form['adminstrators_id']
             }
             User.create_user(data)
             user = User.get_one(data)
@@ -48,10 +49,10 @@ def register_user():
                 "city" : request.form['city'],
                 "state" : request.form['state'],
                 "zipcode" : request.form['zipcode'],
-                "users_id" : session['id']
+                "users_id" : user.id
             }
             Address.add_one(data1)
-            return redirect("/user/dashboard/")
+            return redirect("/user/dashboard")
         else:
             flash("Email already in use, please provide another", "error_register_email")
             return redirect("/user/register")
@@ -80,6 +81,7 @@ def login_user():
         session['first_name'] = result.first_name
         session['last_name'] = result.last_name
         session['username'] = result.username
+        print(session)
         return redirect("/user/dashboard")
 
 
