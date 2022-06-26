@@ -1,0 +1,73 @@
+* {
+    margin: 0px auto;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+.container {
+    background-color: #4533c6;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    box-shadow: 0px 0px 100px black;
+    height: 100vh;
+}
+
+#title {
+    width: 285px;
+    margin-left: 50px;
+    margin-bottom: 25px;
+    border: 6px solid red;
+    border-radius: 15px;
+}
+
+#title h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 70px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#flash {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+.login {
+    width: 500px;
+    background-color: gray;
+    padding: 40px;
+    margin-top: 80px;
+    margin-bottom: 100px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 25px black;
+}
+
+.login h1 {
+    color: limegreen;
+    font-weight: bold;
+
+}
+
+.login label {
+    color: white;
+}
+
+.login h2 {
+    color: red;
+    font-weight: bold;
+}
+
+.login a {
+    color: red;
+}
+
+.login a:active {
+    opacity: 65%;
+}
+
+.footer {
+    text-align: center;
+}

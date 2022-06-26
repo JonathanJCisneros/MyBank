@@ -9,8 +9,8 @@ def display_home():
 
 @app.route("/user/login")
 def user_login():
-    return render_template("userLogin.html")
+    return render_template("user/userLogin.html")
 
 @app.route("/user/register")
 def user_register():
-    return render_template("userRegister.html")
+    return render_template("user/userRegister.html")

@@ -6,9 +6,9 @@ from flask_app.models.administrator_model import Administrator
 
 @app.route("/admin")
 def display_admin_register():
-    return render_template("adminRegister.html")
+    return render_template("admin/adminRegister.html")
 
-@app.route("/admin/register", methods = ['POST'])
+@app.route("/admin_register", methods = ['POST'])
 def register_admin():
     if Administrator.validate_register(request.form) == True:
         data = {
@@ -41,12 +41,12 @@ def register_admin():
 @app.route("/admin/dashboard")
 def display_dashboard():
     if Administrator.validate_session():
-        return render_template("adminDashboard.html")
+        return render_template("admin/adminDashboard.html")
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/admin")
 
-@app.route("/login", methods = ['POST'])
+@app.route("/admin_login", methods = ['POST'])
 def login():
     data = {
         "email" : request.form['email']
@@ -74,7 +74,7 @@ def logout():
 @app.route("/admin/view")
 def view_form():
     if Administrator.validate_session():
-        return render_template("adminView.html")
+        return render_template("admin/adminView.html")
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/admin")
@@ -82,4 +82,4 @@ def view_form():
 
 @app.route("/accept")
 def create_account():
-    return render_template("newAccount.html")
+    return render_template("admin/newAccount.html")
