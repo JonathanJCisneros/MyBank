@@ -25,6 +25,10 @@
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+.header {
+    text-align: center;
+}
+
 .register {
     width: 700px;
     background-color: gray;
@@ -38,4 +42,20 @@
 .register h1 {
     font-weight: bold;
     color: limegreen;
+}
+
+#username, #password, #password_confirmation {
+    width: 350px;
+}
+
+#date_of_birth, #social_security, #annual_income {
+    width: 200px;
+}
+
+#employment_status {
+    width: 250px;
+}
+
+.register p {
+    color: rgb(219, 0, 0);
 }

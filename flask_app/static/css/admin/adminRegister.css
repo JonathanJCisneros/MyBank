@@ -51,12 +51,12 @@
 
 #flash {
     text-align: center;
-    color: red;
+    color: rgb(219, 0, 0);
     font-weight: bold;
 }
 
 #pass-flash {
-    color: red;
+    color: rgb(219, 0, 0);
     font-weight: bold;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .register p {
-    color: red;
+    color: rgb(219, 0, 0);
     font-weight: bold;
 }
 
