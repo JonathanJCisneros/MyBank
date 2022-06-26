@@ -52,7 +52,8 @@ def register_user():
                 "users_id" : user.id
             }
             Address.add_one(data1)
-            return redirect("/user/dashboard")
+            num = user.id
+            return redirect(f"/user/dashboard/{num}")
         else:
             flash("Email already in use, please provide another", "error_register_email")
             return redirect("/user/register")
@@ -81,12 +82,12 @@ def login_user():
         session['first_name'] = result.first_name
         session['last_name'] = result.last_name
         session['username'] = result.username
-        print(session)
-        return redirect("/user/dashboard")
+        num = result.id
+        return redirect(f"/user/dashboard/{num}")
 
 
-@app.route("/user/dashboard")
-def user_dashboard():
+@app.route("/user/dashboard/<int:id>")
+def user_dashboard(id):
     if User.validate_session():
         return render_template("user/userDashboard.html")
     else:

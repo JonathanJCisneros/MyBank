@@ -42,7 +42,7 @@
                 </div>
                 <div class="navright">
                     {% if 'id' in session: %}
-                        <a href="/user/dashboard" class="btn btn-primary">My Dashboard</a>
+                        <a href="/user/dashboard/{{session.id}}" class="btn btn-primary">My Dashboard</a>
                         <a href="/user/logout" class="btn btn-danger">Logout</a>
                     {% else: %}
                         <a href="/user/login" class="btn btn-primary">Login</a>
