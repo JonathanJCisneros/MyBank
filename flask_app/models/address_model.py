@@ -14,7 +14,7 @@ class Address:
 
     @classmethod
     def add_one(cls, data):
-        query =  "INSERT into addresses(street, apt_suite_num, city, state, zipcode, users_id) "
+        query =  "INSERT INTO addresses(street, apt_suite_num, city, state, zipcode, users_id) "
         query += "VALUES(%(street)s, %(apt_suite_num)s, %(city)s, %(state)s, %(zipcode)s, %(users_id)s);"
 
         result = connectToMySQL(DATABASE).query_db(query, data)
