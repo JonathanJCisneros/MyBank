@@ -10,6 +10,41 @@ def display_home():
     return render_template("home.html")
 
 
+@app.route("/checking")
+def display_checking():
+    return render_template("checking.html")
+
+
+@app.route("/savings")
+def display_savings():
+    return render_template("savings.html")
+
+
+@app.route("/auto")
+def display_auto():
+    return render_template("auto.html")
+
+
+@app.route("/personal")
+def display_personal():
+    return render_template("personal.html")
+
+
+@app.route("/mortgage")
+def display_mortgage():
+    return render_template("mortgage.html")
+
+
+@app.route("/about")
+def display_about():
+    return render_template("about.html")
+
+
+@app.route("/contact")
+def display_contact():
+    return render_template("contact.html")
+
+
 @app.route("/user/register")
 def user_register():
     return render_template("user/userRegister.html")
