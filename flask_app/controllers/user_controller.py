@@ -10,11 +10,6 @@ def display_home():
     return render_template("home.html")
 
 
-@app.route("/credit")
-def display_credit():
-    return render_template("credit.html")
-
-
 @app.route("/checking")
 def display_checking():
     return render_template("checking.html")

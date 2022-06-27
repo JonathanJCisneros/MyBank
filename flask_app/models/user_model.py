@@ -18,6 +18,7 @@ class User:
         self.social_security = data['social_security']
         self.phone_number = data['phone_number']
         self.employment_status = data['employment_status']
+        self.annual_income = data['annual_income']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.addresses = []

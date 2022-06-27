@@ -58,10 +58,7 @@
     font-size: 60px;
 }
 
-.footer {
-    margin-bottom: 0px;
-    text-align: center;
-}
+
 
 .img1 {
     padding: 30px;
@@ -75,6 +72,11 @@
     text-align: center;
     color: white;
     font-weight: bold;
+}
+
+#signup {
+    text-align: center;
+    margin-bottom: 25px;
 }
 
 .points {
@@ -101,4 +103,9 @@
 .description {
     color: white;
     padding: 35px;
+}
+
+.footer {
+    margin-bottom: 0px;
+    text-align: center;
 }

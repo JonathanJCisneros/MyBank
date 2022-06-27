@@ -58,6 +58,11 @@
     font-size: 60px;
 }
 
+#flash {
+    text-align: center;
+    color: limegreen;
+}
+
 .accounts {
     padding: 40px;
     background-color: lightgray;
