@@ -85,9 +85,6 @@
 
 .right {
     flex: 1;
-    background-color: lightgray;
-    height: 300px;
-    border-radius: 25px;
 }
 
 .footer {
