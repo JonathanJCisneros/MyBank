@@ -11,6 +11,7 @@ def display_credit():
 @app.route("/user/credit/request")
 def user_card_request():
     if User.validate_session():
+        session['type'] = 'Credit Card'
         return render_template("user/creditSignup.html")
     else:
         flash("You must login to see this information", "error_not_logged_in")

@@ -41,8 +41,8 @@ class User:
 
     @classmethod
     def create_user(cls, data):
-        query =  "INSERT into users(first_name, last_name, email, phone_number, date_of_birth, social_security, employment_status, annual_income, username, password, administrators_id) "
-        query += "VALUES(%(first_name)s, %(last_name)s, %(email)s, %(phone_number)s, %(date_of_birth)s, %(social_security)s, %(employment_status)s, %(annual_income)s, %(username)s, %(password)s, %(administrators_id)s);"
+        query =  "INSERT into users(first_name, last_name, email, phone_number, date_of_birth, social_security, employment_status, annual_income, username, password) "
+        query += "VALUES(%(first_name)s, %(last_name)s, %(email)s, %(phone_number)s, %(date_of_birth)s, %(social_security)s, %(employment_status)s, %(annual_income)s, %(username)s, %(password)s);"
 
         result = connectToMySQL(DATABASE).query_db(query, data)
 

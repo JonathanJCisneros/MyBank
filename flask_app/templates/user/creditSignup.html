@@ -14,7 +14,7 @@
                 <h1>MyBank</h1>
             </div>
             <div class="header">
-                <a href="/user/dashboard/{{session.id}}" class="btn btn-primary">My Dashboard</a>
+                <a href="/user/dashboard" class="btn btn-primary">My Dashboard</a>
             </div>
             <div class="register">
                 <h1>Let's get started!</h1>
@@ -173,8 +173,9 @@
                         <label for="ssc_img">Social Security Card</label>
                         <input type="file" class="form-control" id="inputGroupFile02" name="ssc_img" required>
                     </div>
-                    <input type="hidden" name="type" value="Credit Card">
-                    <input type="hidden" name="User_id" value="{{session.id}}">
+                    <input type="hidden" name="type" value="{{session.type}}">
+                    <input type="hidden" name="users_id" value="{{session.id}}">
+                    <input type="hidden" name="adminstrators_id" value="1">
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

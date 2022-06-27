@@ -69,15 +69,14 @@ def register_user():
                 "employment_status" : request.form['employment_status'],
                 "annual_income" : request.form['annual_income'],
                 "username" : request.form['username'],
-                "password" : request.form['password'],
-                "administrators_id" : request.form['adminstrators_id']
+                "password" : request.form['password']
             }
             User.create_user(data)
             user = User.get_one(data)
-            session['id'] : user.id
-            session['first_name'] : user.first_name
-            session['last_name'] : user.last_name
-            session['username'] : user.username
+            session['id'] = user.id
+            session['first_name'] = user.first_name
+            session['last_name'] = user.last_name
+            session['username'] = user.username
             data1 = {
                 "street" : request.form['street'],
                 "apt_suite_num" : request.form['apt_suite_num'],
@@ -87,8 +86,7 @@ def register_user():
                 "users_id" : user.id
             }
             Address.add_one(data1)
-            num = user.id
-            return redirect(f"/user/dashboard/{num}")
+            return redirect("/user/dashboard/")
         else:
             flash("Email already in use, please provide another", "error_register_email")
             return redirect("/user/register")
@@ -117,12 +115,11 @@ def login_user():
         session['first_name'] = result.first_name
         session['last_name'] = result.last_name
         session['username'] = result.username
-        num = result.id
-        return redirect(f"/user/dashboard/{num}")
+        return redirect("/user/dashboard/")
 
 
-@app.route("/user/dashboard/<int:id>")
-def user_dashboard(id):
+@app.route("/user/dashboard/")
+def user_dashboard():
     if User.validate_session():
         return render_template("user/userDashboard.html")
     else:
