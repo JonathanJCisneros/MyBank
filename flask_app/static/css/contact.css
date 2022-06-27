@@ -49,3 +49,78 @@
 .navright a {
     margin-right: 15px;
 }
+
+.header {
+    text-align: center;
+    margin: 50px;
+}
+
+.header h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.content {
+    display: flex;
+    margin-top: 50px;
+}
+
+.content h3 {
+    color: white;
+}
+
+.left {
+    flex: 1;
+}
+
+.left h3 {
+    text-align: center;
+}
+
+.register {
+    width: 500px;
+    background-color: gray;
+    padding: 40px;
+    margin-top: 45px;
+    margin-bottom: 100px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 25px black;
+}
+
+form input {
+    margin-bottom: 3px;
+}
+
+form p {
+    color: green;
+}
+
+.right {
+    text-align: left;
+    flex: 1;
+}
+
+.right h2 {
+    text-align: center;
+    color: white;
+}
+
+.right h5, a {
+    color: white;
+    text-decoration: none;
+}
+
+.right h5 a:active {
+    opacity: 65%;
+}
+
+.address {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.footer {
+    margin-bottom: 0px;
+    text-align: center;
+}
