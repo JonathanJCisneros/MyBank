@@ -21,9 +21,9 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.addresses = []
-        self.accounts = []
-        self.loans = []
-        self.cards = []
+        self.account_list = []
+        self.loan_list = []
+        self.card_list = []
 
     @classmethod
     def get_one(cls, data):
