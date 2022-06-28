@@ -1,12 +1,19 @@
 from flask import session, request, render_template, redirect, flash
 from flask_app import app
-from flask_app.models.card_model import Card
 from flask_app.models.form_model import Form
 
 
 @app.route("/user_request", methods = ['POST'])
 def request_form():
     if Form.validate_request(request.form):
+
+        files_submitted = [
+            request.files['drivers_license'],
+            request.files['ssc']
+        ]
+        
+
+        Form.get_files(files_submitted)
         data = {
             "first_name" : request.form['first_name'],
             "last_name" : request.form['last_name'],
@@ -21,14 +28,16 @@ def request_form():
             "city" : request.form['city'],
             "state" : request.form['state'],
             "zipcode" : request.form['zipcode'],
-            "drivers_license" : request.form['drivers_license'],
-            "ssc" : request.form['ssc'],
+            "drivers_license" : request.files['drivers_license'].filename,
+            "ssc" : request.files['ssc'].filename,
             "type" : request.form['type'],
             "amount" : request.form['amount'],
             "status" : request.form['status'],
             "users_id" : request.form['users_id'],
             "administrators_id" : request.form['administrators_id']
         }
+
+
         Form.add_form(data)
         flash("Your request is being processed, we will get back to you shortly", "request_received")
         return redirect("/user/dashboard/")

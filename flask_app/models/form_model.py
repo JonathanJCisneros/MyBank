@@ -1,7 +1,12 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import DATABASE
 from flask import flash
+from flask_app import app
+from werkzeug.utils import secure_filename
+import os
 import re
+
+app.config['UPLOAD_FOLDER'] = '/Users/jonat/OneDrive/Documents/Coding Dojo/Projects/myBank/myBank_app/flask_app/static/images/signUp'
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -97,6 +102,7 @@ class Form:
 
         return connectToMySQL(DATABASE).query_db(query, data)
 
+
     @staticmethod
     def validate_request(data):
         isValid = True
@@ -143,5 +149,13 @@ class Form:
             flash("Invalid Zipcode", "error_register_zip")
             isValid = False
         return isValid
+
+    @staticmethod
+    def get_files(data):
+        for image in data:
+            f = image
+            file_name = f.filename
+            file_name = secure_filename(f.filename)
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
 
 

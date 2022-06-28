@@ -19,7 +19,7 @@
             <div class="register">
                 <h1>Let's get started!</h1>
                 <h4>We just need to verify some information</h4>
-                <form class="row g-3" action="/user_request" method="POST">
+                <form class="row g-3" action="/user_request" method="POST" enctype="multipart/form-data">
                     <div class="col-md-6">
                         <label for="first_name" class="form-label">First Name</label>
                         <input type="text" class="form-control" id="first_name" name="first_name">
@@ -167,36 +167,27 @@
                     </div>
                     <div class="col-12">
                         <label for="drivers_license">Drivers License</label>
-                        <input type="file" class="form-control" id="inputGroupFile02" name="drivers_license" required>
+                        <input type="file" class="form-control" id="inputGroupFile02" name="drivers_license" accept="image/*" required>
                     </div>
                     <div class="col-12">
                         <label for="ssc">Social Security Card</label>
-                        <input type="file" class="form-control" id="inputGroupFile02" name="ssc" required>
+                        <input type="file" class="form-control" id="inputGroupFile02" name="ssc" accept="image/*" required>
                     </div>
                     <div class="col-12">
-                    {% if request_type == 'Checking': %}
+                    {% if request_type == 'Checking' or request_type == 'Savings': %}
                         <label for="amount">Deposit</label>
                         <input type="number" class="form-control" name="amount" id="amount">
-                    {% elif request_type == 'Savings': %}
-                        <label for="amount">Deposit</label>
-                        <input type="number" class="form-control" name="amount" id="amount">
-                    {% elif request_type == 'Auto': %}
-                        <label for="amount">Loan Amount</label>
-                        <input type="number" class="form-control" name="amount" id="amount">
-                    {% elif request_type == 'Personal': %}
-                        <label for="amount">Loan Amount</label>
-                        <input type="number" class="form-control" name="amount" id="amount">
-                    {% elif request_type == 'Mortgage': %}
+                    {% elif request_type == 'Auto' or request_type == 'Personal' or request_type == 'Mortgage': %}
                         <label for="amount">Loan Amount</label>
                         <input type="number" class="form-control" name="amount" id="amount">
                     {% else: %}
                         <input type="hidden" name="amount" value="0">
                     {% endif %}
                     </div>
-                    <input type="hidden" name="type" value="{{session.type}}">
+                    <input type="hidden" name="type" value="{{request_type}}">
                     <input type="hidden" name="users_id" value="{{session.id}}">
                     <input type="hidden" name="status" value="Pending">
-                    <input type="hidden" name="adminstrators_id" value="1">
+                    <input type="hidden" name="administrators_id" value="1">
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
