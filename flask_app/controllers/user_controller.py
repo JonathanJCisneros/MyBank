@@ -119,6 +119,16 @@ def login_user():
         return redirect("/user/dashboard/")
 
 
+@app.route("/user/request", methods = ['POST'])
+def user_card_request():
+    if User.validate_session():
+        request_type = request.form['type']
+        return render_template("user/userSignup.html", request_type = request_type)
+    else:
+        flash("You must login to see this information", "error_not_logged_in")
+        return redirect("/user/login")
+
+
 @app.route("/user/dashboard/")
 def user_dashboard():
     if User.validate_session():

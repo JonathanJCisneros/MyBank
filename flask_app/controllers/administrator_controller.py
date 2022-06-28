@@ -86,12 +86,16 @@ def view_form(id):
             "id" : id
         }
         form = Form.list_one(data)
+        session['type'] = form.type
+        session['users_id'] = form.users_id
+        session['user_first'] = form.first_name
+        session['user_last'] = form.last_name
         return render_template("admin/adminView.html", form = form)
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/admin")
 
 
-@app.route("/accept")
+@app.route("/accept/credit")
 def create_account():
     return render_template("admin/newAccount.html")

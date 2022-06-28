@@ -48,7 +48,7 @@
     width: 350px;
 }
 
-#date_of_birth, #social_security, #annual_income {
+#date_of_birth, #social_security, #annual_income, #amount {
     width: 200px;
 }
 

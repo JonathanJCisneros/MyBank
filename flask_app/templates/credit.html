@@ -65,7 +65,10 @@
                 <h2 id="head">The Cash Flow Card</h2>
                 <div id="signup">
                     {% if 'id' in session: %}
-                        <a href="/user/credit/request" class="btn btn-success" >Sign Up!</a>
+                    <form action="/user/request" method="post">
+                        <button class="btn btn-success" >Sign Up!</button>
+                        <input type="hidden" name="type" value="Credit Card">
+                    </form>
                     {% else: %}
                         <a href="/user/login" class="btn btn-success">Sign Up!</a>
                     {% endif %}
