@@ -3,6 +3,8 @@ from flask_app import app
 from flask_app.models.user_model import User
 from flask_app.models.address_model import Address
 from flask_app.models.card_model import Card
+from flask_app.models.account_model import Account
+from flask_app.models.loan_model import Loan
 
 
 @app.route("/")
@@ -136,7 +138,9 @@ def user_dashboard():
             "users_id" : session['id']
         }
         card_list = Card.get_cards(data)
-        return render_template("user/userDashboard.html", card_list = card_list)
+        account_list = Account.get_accounts(data)
+        loan_list = Loan.get_loans(data)
+        return render_template("user/userDashboard.html", card_list = card_list, account_list = account_list, loan_list = loan_list)
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/user/login")

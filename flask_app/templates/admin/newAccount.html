@@ -49,27 +49,39 @@
                     </div>
                     <input type="hidden" name="pin" value="0000">
                     <input type="hidden" name="card_type" value="{{session.type}}">
-                    {% endif %}
+                    {% elif account_type == 'Checking' or account_type == 'Savings': %}
                     <div class="col-12">
-                    {% if account_type == 'Checking': %}
-                        <label for="amount">Deposit</label>
-                        <input type="number" class="form-control" name="amount" id="amount">
-                    {% elif account_type == 'Savings': %}
-                        <label for="amount">Deposit</label>
-                        <input type="number" class="form-control" name="amount" id="amount">
-                    {% elif account_type == 'Auto': %}
-                        <label for="amount">Loan Amount</label>
-                        <input type="number" class="form-control" name="amount" id="amount">
-                    {% elif account_type == 'Personal': %}
-                        <label for="amount">Loan Amount</label>
-                        <input type="number" class="form-control" name="amount" id="amount">
-                    {% elif account_type == 'Mortgage': %}
-                        <label for="amount">Loan Amount</label>
-                        <input type="number" class="form-control" name="amount" id="amount">
-                    {% else: %}
-                        <input type="hidden" name="amount" value="0">
-                    {% endif %}
+                        <label for="account_number">Account Number</label>
+                        <input type="number" class="form-control" name="account_number" id="account_number">
                     </div>
+                    <div class="col-12">
+                        <label for="interest_rate">Interest Rate</label>
+                        <input type="number" class="form-control" name="interest_rate" id="interest_rate">
+                    </div>
+                    <div class="col-12">
+                        <label for="balance">Balance</label>
+                        <input type="number" class="form-control" name="balance" id="balance">
+                    </div>
+                    <input type="hidden" name="account_type" value="{{session.type}}">
+                    {% elif account_type == 'Auto' or account_type == 'Personal' or account_type == 'Mortgage': %}
+                    <div class="col-12">
+                        <label for="loan_number">Loan Number</label>
+                        <input type="number" class="form-control" name="loan_number" id="loan_number">
+                    </div>
+                    <div class="col-12">
+                        <label for="amount">Balance</label>
+                        <input type="number" class="form-control" name="amount" id="amount">
+                    </div>
+                    <div class="col-12">
+                        <label for="apr">APR</label>
+                        <input type="number" class="form-control" name="apr" id="apr">
+                    </div>
+                    <div class="col-12">
+                        <label for="maturity_date" class="form-label">Maturity Date</label>
+                        <input type="date" class="form-control" id="maturity_date" name="maturity_date">
+                    </div>
+                    <input type="hidden" name="account_type" value="{{session.type}}">
+                    {% endif %}
                     <input type="hidden" name="users_id" value="{{session.users_id}}">
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">Create</button>

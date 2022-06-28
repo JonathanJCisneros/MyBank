@@ -12,3 +12,28 @@ class Loan:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.users_id = data['users_id']
+
+    @classmethod
+    def new_loan(cls,data):
+        query =  "INSERT INTO loans(account_type, loan_number, balance, apr, maturity_date, users_id) "
+        query += "VALUES(%(account_type)s, %(loan_number)s, %(balance)s, %(apr)s, %(maturity_date)s, %(users_id)s);"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
+
+    @classmethod
+    def get_loans(cls, data):
+        query =  "SELECT * "
+        query += "FROM loans "
+        query += "WHERE users_id = %(users_id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        loan_list = []
+
+        if len(result) > 0:
+            for loan in result:
+                loan_list.append(cls(loan))
+        
+        return loan_list

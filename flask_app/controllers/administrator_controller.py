@@ -3,6 +3,8 @@ from flask_app import app
 from flask_app.models.administrator_model import Administrator
 from flask_app.models.form_model import Form
 from flask_app.models.card_model import Card
+from flask_app.models.account_model import Account
+from flask_app.models.loan_model import Loan
 
 
 
@@ -101,7 +103,6 @@ def view_form(id):
 def create_account():
     if Administrator.validate_session():
         account_type = session['type']
-        print(account_type)
         return render_template("admin/newAccount.html", account_type = account_type)
     else:
         flash("You must login to see this information", "error_not_logged_in")
@@ -122,6 +123,27 @@ def create_product():
             "users_id" : request.form['users_id']
         }
         Card.new_card(data)
+        return redirect("/admin/dashboard")
+    elif session['type'] == "Checking" or "Savings":
+        data1 = {
+            "account_type" : request.form['account_type'],
+            "account_number" : request.form['account_number'],
+            "interest_rate" : request.form['interest_rate'],
+            "balance" : request.form['balance'],
+            "users_id" : request.form['users_id']
+        }
+        Account.new_account(data1)
+        return redirect("/admin/dashboard")
+    elif session['type'] == "Auto" or "Personal" or "Mortgage":
+        data2 = {
+            "account_type" : request.form['account_type'],
+            "loan_number" : request.form['loan_number'],
+            "apr" : request.form['apr'],
+            "balance" : request.form['balance'],
+            "maturity_date" : request.form['maturity_date'],
+            "users_id" : request.form['users_id']
+        }
+        Loan.new_loan(data2)
         return redirect("/admin/dashboard")
     else:
         return redirect("/accept/account")

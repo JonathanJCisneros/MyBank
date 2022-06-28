@@ -26,10 +26,14 @@ class Card:
 
         result = connectToMySQL(DATABASE).query_db(query, data)
 
+        card_list = []
+
         if len(result) > 0:
-            return cls(result[0])
-        else:
-            return None
+            for card in result:
+                card_list.append(cls(card))
+        
+        return card_list
+
 
     @classmethod
     def new_card(cls, data):

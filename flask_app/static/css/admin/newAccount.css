@@ -48,12 +48,16 @@
     width: 200px;
 }
 
-#ccv {
+#ccv, #interest_rate {
     width: 150px;
 }
 
-#card_number, #purchase_apr {
+#card_number, #purchase_apr, #balance {
     width: 250px;
+}
+
+#account_number {
+    width: 300px;
 }
 
 .register p {

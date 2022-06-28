@@ -20,10 +20,15 @@ class Account:
 
         result = connectToMySQL(DATABASE).query_db(query, data)
 
+        account_list = []
+
         if len(result) > 0:
-            return cls(result[0])
-        else:
-            return None
+            for account in result:
+                account_list.append(cls(account))
+        
+        return account_list
+
+
 
     @classmethod
     def get_one_account(cls, data):
@@ -37,3 +42,13 @@ class Account:
             return cls(result[0])
         else:
             return None
+
+
+    @classmethod
+    def new_account(cls, data):
+        query =  "INSERT INTO accounts(account_type, account_number, interest_rate, balance, users_id) "
+        query += "VALUES(%(account_type)s, %(account_number)s, %(interest_rate)s, %(balance)s, %(users_id)s);"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result

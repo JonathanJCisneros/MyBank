@@ -63,14 +63,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for account in account_list: %}
                         <tr>
-                            <td>*********1356</td>
-                            <td>Checking</td>
-                            <td>$10,000</td>
+                            <td>{{account.account_number}}</td>
+                            <td>{{account.account_type}}</td>
+                            <td>{{account.balance}}</td>
                             <td>
                                 <a href="#" class="btn btn-primary" id="view">Details</a>
                             </td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
                 <br>
@@ -85,14 +87,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for loan in loan_list: %}
                         <tr>
-                            <td>*********2273</td>
-                            <td>Automotive</td>
-                            <td>$27,000</td>
+                            <td>{{loan.loan_number}}</td>
+                            <td>{{loan.account_type}}</td>
+                            <td>{{loan.balance}}</td>
                             <td>
                                 <a href="#" class="btn btn-primary" id="view">Details</a>
                             </td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
                 <br>
@@ -107,14 +111,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for card in card_list: %}
                         <tr>
-                            <td>{{card_list.card_number}}</td>
-                            <td>{{card_list.card_type}}</td>
-                            <td>{{card_list.current_balance}}</td>
+                            <td>{{card.card_number}}</td>
+                            <td>{{card.card_type}}</td>
+                            <td>{{card.current_balance}}</td>
                             <td>
                                 <a href="#" class="btn btn-primary" id="view">Details</a>
                             </td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
