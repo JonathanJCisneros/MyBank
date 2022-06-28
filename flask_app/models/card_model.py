@@ -20,6 +20,40 @@ class Card:
         self.updated_at = data['updated_at']
         self.users_id = data['users_id']
 
+    @classmethod
+    def get_cards(cls, data):
+        query =  "SELECT * "
+        query += "FROM cards "
+        query += "WHERE users_id = %(users_id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        if len(result) > 0:
+            return cls(result[0])
+        else:
+            return None
+
+    @classmethod
+    def new_card(cls, data):
+        query =  "INSERT INTO cards(card_type, card_number, exp_date, ccv, credit_limit, pin, current_balance, purchase_apr, users_id) "
+        query += "VALUES(%(card_type)s, %(card_number)s, %(exp_date)s, %(ccv)s, %(credit_limit)s, %(pin)s, %(current_balance)s, %(purchase_apr)s, %(users_id)s);"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
+
+
+    @classmethod
+    def delete_card(cls, data):
+        query =  "DELETE FROM cards "
+        query += "WHERE card_number = %(card_number)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
+
+
+
     @staticmethod
     def validate_credit_request(data):
         isValid = True

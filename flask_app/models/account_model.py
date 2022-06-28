@@ -11,3 +11,29 @@ class Account:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.users_id = data['users_id']
+
+    @classmethod
+    def get_accounts(cls, data):
+        query =  "SELECT * "
+        query += "FROM accounts "
+        query += "WHERE users_id = %(users_id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        if len(result) > 0:
+            return cls(result[0])
+        else:
+            return None
+
+    @classmethod
+    def get_one_account(cls, data):
+        query =  "SELECT * "
+        query += "FROM accounts "
+        query += "WHERE users_id = %(users_id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+        
+        if len(result) > 0:
+            return cls(result[0])
+        else:
+            return None

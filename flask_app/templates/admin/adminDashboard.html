@@ -33,15 +33,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Kevin Orozco</td>
-                            <td>Checking</td>
-                            <td>10000</td>
-                            <td>
-                                <a href="/admin/view" class="btn btn-primary" id="view">View</a>
-                                <a href="/deny/(form_id)" class="btn btn-danger">Deny</a>
-                            </td>
-                        </tr>
+                        {% for form in forms: %}
+                            <tr>
+                                <td>{{form.first_name}} {{form.last_name}}</td>
+                                <td>{{form.type}}</td>
+                                <td>{{form.amount}}</td>
+                                <td>
+                                    <a href="/admin/view/{{form.id}}" class="btn btn-primary" id="view">View</a>
+                                    <a href="/deny/(form_id)" class="btn btn-danger">Deny</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

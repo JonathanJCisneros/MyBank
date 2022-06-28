@@ -21,38 +21,45 @@
                     <a href="/admin/logout" class="btn btn-danger">Logout</a>
                 </div>
             </div>
-            <h2 id="subtitle">Hi {{session['first_name']}}, here is the request from Kevin Orozco:</h2>
+            <h2 id="subtitle">Hi {{session['first_name']}}, here is the request from {{form.first_name}} {{form.last_name}}:</h2>
             <div class="form">
-                <h3>First Name: Kevin</h3>
+            <h3>First Name: {{form.first_name}}</h3>
+            <br>
+            <h3>Last Name: {{form.last_name}}</h3>
+            <br>
+            <h3>Date of Birth: {{form.date_of_birth}}</h3>
+            <br>
+            <h3>Social Security: {{form.social_security}}</h3>
+            <br>
+            <h3>Employment Status: {{form.employment_status}}</h3>
+            <br>
+            <h3>Annual Income: {{form.annual_income}}</h3>
+            <br>
+            <h1>Address:</h1>
+            <h3>{{form.street}} {{form.apt_suite_num}}</h3>
+            <h3>{{form.city}}, {{form.state}} {{form.zipcode}}</h3>
+            {% if form.amount > 0: %}
                 <br>
-                <h3>Last Name: Orozco</h3>
+                <h3>Amount: {{form.amount}}</h3>
                 <br>
-                <h3>Date of Birth: 06-11-1997</h3>
-                <br>
-                <h3>Social Security: 111-11-1111</h3>
-                <br>
-                <h3>Employment Status: Full-Time</h3>
-                <br>
-                <h1>Address:</h1>
-                <h3>Street: 1234515th St. SW</h3>
-                <h3>Apt/Suite: N/A</h3>
-                <h3>City: Dallas</h3>
-                <h3>State: TX</h3>
-                <h3>Zipcode: 80456</h3>
-                <br>
-                <h2>Initial Deposit Amount: $10,000</h2>
-                <br>
-                <h1>Identity Verification:</h1>
-                <div class="imgs">
-                    <div class="ssc">
-                        <p>research</p>
-                    </div>
-                    <div class="id">
-                        <p>research</p>
-                    </div>
+            {% endif %}
+            <h1>Identity Verification:</h1>
+            <div class="imgs">
+                <div class="ssc">
+                    <p>research</p>
                 </div>
-                <a href="/accept" class="btn btn-success">Approve</a>
-                <a href="/deny" class="btn btn-danger">Deny</a>
+                <div class="id">
+                    <p>research</p>
+                </div>
+            </div>
+            {% if form.type == 'Credit Card' %}
+                <a href="/accept/credit" class="btn btn-success">Approve</a>
+            {% elif form.type == 'Checking' or 'Savings' %}
+                <a href="/accept/accounts" class="btn btn-success">Approve</a>
+            {% else %}
+                <a href="/accept/loans" class="btn btn-success">Approve</a>
+            {% endif %}
+            <a href="/deny" class="btn btn-danger">Deny</a>
             </div>
         </div>
     </body>

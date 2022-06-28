@@ -1,6 +1,7 @@
 from flask import session, request, render_template, redirect, flash
 from flask_app import app
 from flask_app.models.administrator_model import Administrator
+from flask_app.models.form_model import Form
 
 
 
@@ -64,7 +65,8 @@ def login():
 @app.route("/admin/dashboard")
 def display_dashboard():
     if Administrator.validate_session():
-        return render_template("admin/adminDashboard.html")
+        forms = Form.list_all()
+        return render_template("admin/adminDashboard.html", forms = forms)
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/admin")
@@ -77,10 +79,14 @@ def logout():
     return redirect("/admin")
 
 
-@app.route("/admin/view")
-def view_form():
+@app.route("/admin/view/<int:id>")
+def view_form(id):
     if Administrator.validate_session():
-        return render_template("admin/adminView.html")
+        data = {
+            "id" : id
+        }
+        form = Form.list_one(data)
+        return render_template("admin/adminView.html", form = form)
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/admin")

@@ -166,15 +166,16 @@
                         {% endfor %}
                     </div>
                     <div class="col-12">
-                        <label for="id_img">Drivers License</label>
-                        <input type="file" class="form-control" id="inputGroupFile02" name="id_img" required>
+                        <label for="drivers_license">Drivers License</label>
+                        <input type="file" class="form-control" id="inputGroupFile02" name="drivers_license" required>
                     </div>
                     <div class="col-12">
-                        <label for="ssc_img">Social Security Card</label>
-                        <input type="file" class="form-control" id="inputGroupFile02" name="ssc_img" required>
+                        <label for="ssc">Social Security Card</label>
+                        <input type="file" class="form-control" id="inputGroupFile02" name="ssc" required>
                     </div>
                     <input type="hidden" name="type" value="{{session.type}}">
                     <input type="hidden" name="users_id" value="{{session.id}}">
+                    <input type="hidden" name="status" value="Pending">
                     <input type="hidden" name="adminstrators_id" value="1">
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">Submit</button>
