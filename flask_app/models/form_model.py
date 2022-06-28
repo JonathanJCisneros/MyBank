@@ -76,7 +76,8 @@ class Form:
     @classmethod
     def update_status(cls, data):
         query =  "UPDATE forms "
-        query += "SET status = %(status)s;"
+        query += "SET status = %(status)s "
+        query += "WHERE id = %(id)s;"
 
         return connectToMySQL(DATABASE).query_db(query, data)
 

@@ -93,6 +93,7 @@ def view_form(id):
         session['users_id'] = form.users_id
         session['user_first'] = form.first_name
         session['user_last'] = form.last_name
+        session['form_id'] = form.id
         return render_template("admin/adminView.html", form = form)
     else:
         flash("You must login to see this information", "error_not_logged_in")
@@ -123,6 +124,11 @@ def create_product():
             "users_id" : request.form['users_id']
         }
         Card.new_card(data)
+        data3 = {
+            "id" : session['form_id'],
+            "status" : "Approved"
+        }
+        Form.update_status(data3)
         return redirect("/admin/dashboard")
     elif session['type'] == "Checking" or "Savings":
         data1 = {
@@ -133,6 +139,11 @@ def create_product():
             "users_id" : request.form['users_id']
         }
         Account.new_account(data1)
+        data4 = {
+            "id" : session['form_id'],
+            "status" : "Approved"
+        }
+        Form.update_status(data4)
         return redirect("/admin/dashboard")
     elif session['type'] == "Auto" or "Personal" or "Mortgage":
         data2 = {
@@ -144,6 +155,11 @@ def create_product():
             "users_id" : request.form['users_id']
         }
         Loan.new_loan(data2)
+        data5 = {
+            "id" : session['form_id'],
+            "status" : "Approved"
+        }
+        Form.update_status(data5)
         return redirect("/admin/dashboard")
     else:
         return redirect("/accept/account")
