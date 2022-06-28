@@ -48,6 +48,22 @@ class Form:
 
         return form_list
 
+    @classmethod
+    def user_list_one(cls, data):
+        query =  "SELECT * "
+        query += "FROM forms "
+        query += "WHERE users_id = %(users_id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+        
+        form_list = []
+
+        if len(result) > 0:
+            for form in result:
+                form_list.append(cls(form))
+
+        return form_list
+    
 
     @classmethod
     def add_form(cls, data):
