@@ -132,8 +132,11 @@ def user_card_request():
 @app.route("/user/dashboard/")
 def user_dashboard():
     if User.validate_session():
-
-        return render_template("user/userDashboard.html")
+        data = {
+            "users_id" : session['id']
+        }
+        card_list = Card.get_cards(data)
+        return render_template("user/userDashboard.html", card_list = card_list)
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/user/login")

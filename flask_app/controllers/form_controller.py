@@ -4,14 +4,9 @@ from flask_app.models.card_model import Card
 from flask_app.models.form_model import Form
 
 
-@app.route("/credit")
-def display_credit():
-    return render_template("credit.html")
-
-
 @app.route("/user_request", methods = ['POST'])
-def card_request_form():
-    if Card.validate_credit_request(request.form):
+def request_form():
+    if Form.validate_request(request.form):
         data = {
             "first_name" : request.form['first_name'],
             "last_name" : request.form['last_name'],
@@ -39,3 +34,4 @@ def card_request_form():
         return redirect("/user/dashboard/")
     else:
         return redirect("/user/credit/request")
+

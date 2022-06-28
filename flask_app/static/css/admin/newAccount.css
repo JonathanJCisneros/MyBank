@@ -41,18 +41,18 @@
 
 .register h1 {
     font-weight: bold;
-    color: limegreen;
+    color: white;
 }
 
-#username, #password, #password_confirmation {
-    width: 350px;
-}
-
-#date_of_birth, #social_security, #annual_income, #amount {
+#exp_date, #credit_limit, #current_balance {
     width: 200px;
 }
 
-#employment_status {
+#ccv {
+    width: 150px;
+}
+
+#card_number, #purchase_apr {
     width: 250px;
 }
 

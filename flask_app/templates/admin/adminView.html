@@ -52,14 +52,9 @@
                     <p>research</p>
                 </div>
             </div>
-            {% if form.type == 'Credit Card' %}
-                <a href="/accept/credit" class="btn btn-success">Approve</a>
-            {% elif form.type == 'Checking' or 'Savings' %}
-                <a href="/accept/accounts" class="btn btn-success">Approve</a>
-            {% else %}
-                <a href="/accept/loans" class="btn btn-success">Approve</a>
-            {% endif %}
-            <a href="/deny" class="btn btn-danger">Deny</a>
+            <div>
+                <a href="/accept/account" class="btn btn-success">Approve</a>
+                <a href="/deny" class="btn btn-danger">Deny</a>
             </div>
         </div>
     </body>

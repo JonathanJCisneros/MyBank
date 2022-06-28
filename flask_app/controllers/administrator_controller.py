@@ -2,6 +2,7 @@ from flask import session, request, render_template, redirect, flash
 from flask_app import app
 from flask_app.models.administrator_model import Administrator
 from flask_app.models.form_model import Form
+from flask_app.models.card_model import Card
 
 
 
@@ -96,6 +97,31 @@ def view_form(id):
         return redirect("/admin")
 
 
-@app.route("/accept/credit")
+@app.route("/accept/account")
 def create_account():
-    return render_template("admin/newAccount.html")
+    if Administrator.validate_session():
+        account_type = session['type']
+        print(account_type)
+        return render_template("admin/newAccount.html", account_type = account_type)
+    else:
+        flash("You must login to see this information", "error_not_logged_in")
+        return redirect("/admin")
+
+@app.route("/new_account", methods = ['POST'])
+def create_product():
+    if session['type'] == "Credit Card":
+        data = {
+            "card_type" : request.form['card_type'],
+            "card_number" : request.form['card_number'],
+            "exp_date" : request.form['exp_date'],
+            "ccv" : request.form['ccv'],
+            "credit_limit" : request.form['credit_limit'],
+            "current_balance" : request.form['current_balance'],
+            "purchase_apr" : request.form['purchase_apr'],
+            "pin" : request.form['pin'],
+            "users_id" : request.form['users_id']
+        }
+        Card.new_card(data)
+        return redirect("/admin/dashboard")
+    else:
+        return redirect("/accept/account")
