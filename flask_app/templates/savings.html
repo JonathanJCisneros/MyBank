@@ -54,7 +54,42 @@
                     {% endif %}
                 </div>
             </nav>
-            <h1>Savings</h1>
+            <div class="header">
+                <h1>Efficient Savings</h1>
+            </div>
+            <div class="img1">
+                <img src="{{url_for('static', filename='images/cards/card.webp')}}" class="d-block w-100" alt="cardimg1">
+            </div>
+            <div class="content">
+                <h2 id="head">Stashing Cash for the Future</h2>
+                <div id="signup">
+                    {% if 'id' in session: %}
+                    <form action="/user/request" method="POST">
+                        <button class="btn btn-success" type="submit">Sign Up!</button>
+                        <input type="hidden" name="type" value="Savings">
+                    </form>
+                    {% else: %}
+                        <a href="/user/login" class="btn btn-success">Sign Up!</a>
+                    {% endif %}
+                </div>
+                <div class="points">
+                    <div class="left">
+                        <img src="{{url_for('static', filename='images/cards/credit card2.jpg')}}" alt="cardimg2">
+                    </div>
+                    <div class="right">
+                        <ul>
+                            <li><h3>UP TO 9% INTEREST</h3></li>
+                            <li><h3>No large Transfer Fees</h3></li>
+                            <li><h3>Lottery Bonus</h3></li>
+                            <li><h3>International access</h3></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima atque quisquam libero esse incidunt, blanditiis cum! Expedita modi necessitatibus consequuntur iusto voluptate, minima quasi repellendus nulla molestias suscipit laboriosam repudiandae.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima atque quisquam libero esse incidunt, blanditiis cum! Expedita modi necessitatibus consequuntur iusto voluptate, minima quasi repellendus nulla molestias suscipit laboriosam repudiandae.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima atque quisquam libero esse incidunt, blanditiis cum! Expedita modi necessitatibus consequuntur iusto voluptate, minima quasi repellendus nulla molestias suscipit laboriosam repudiandae.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam atque molestiae quisquam quibusdam cupiditate natus officia minima aperiam in illo? Veniam nihil praesentium ullam eius, consectetur repellat cum molestiae nulla.</p>
+            </div>
             <div class="footer">
                 <p>@copyright 2022 by El Chapo-Jonathan Cisneros</p>
             </div>
