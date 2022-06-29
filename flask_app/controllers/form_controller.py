@@ -42,5 +42,14 @@ def request_form():
         flash("Your request is being processed, we will get back to you shortly", "request_received")
         return redirect("/user/dashboard/")
     else:
-        return redirect("/user/credit/request")
+        return redirect("/user/request")
+
+@app.route("/deny/<int:id>")
+def deny_request(id):
+    data = {
+        "id" : id,
+        "status" : "Denied"
+    }
+    Form.update_status(data)
+    return redirect("/admin/dashboard")
 

@@ -34,15 +34,17 @@
                     </thead>
                     <tbody>
                         {% for form in forms: %}
+                            {% if form.status == 'Pending': %}
                             <tr>
                                 <td>{{form.first_name}} {{form.last_name}}</td>
                                 <td>{{form.type}}</td>
                                 <td>{{form.amount}}</td>
                                 <td>
                                     <a href="/admin/view/{{form.id}}" class="btn btn-primary" id="view">View</a>
-                                    <a href="/deny/(form_id)" class="btn btn-danger">Deny</a>
+                                    <a href="/deny/{{form.id}}" class="btn btn-danger">Deny</a>
                                 </td>
                             </tr>
+                            {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>
