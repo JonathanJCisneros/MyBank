@@ -50,6 +50,22 @@
     margin-right: 15px;
 }
 
+.header h1, h2 {
+    margin-top: 40px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.content {
+    padding: 50px;
+}
+
+.content h4, p {
+    color: white;
+}
+
 .footer {
     margin-bottom: 0px;
     text-align: center;
