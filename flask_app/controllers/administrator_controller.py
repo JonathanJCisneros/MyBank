@@ -130,7 +130,7 @@ def create_product():
         }
         Form.update_status(data3)
         return redirect("/admin/dashboard")
-    elif session['type'] == "Checking" or "Savings":
+    if session['type'] == "Checking" or "Savings":
         data1 = {
             "account_type" : request.form['account_type'],
             "account_number" : request.form['account_number'],
@@ -145,7 +145,7 @@ def create_product():
         }
         Form.update_status(data4)
         return redirect("/admin/dashboard")
-    elif session['type'] == "Auto" or "Personal" or "Mortgage":
+    if session['type'] == "Auto" or "Personal" or "Mortgage":
         data2 = {
             "account_type" : request.form['account_type'],
             "loan_number" : request.form['loan_number'],

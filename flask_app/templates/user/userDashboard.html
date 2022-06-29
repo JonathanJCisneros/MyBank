@@ -42,6 +42,13 @@
                     </nav>
                 </div>
                 <div class="navright">
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{{session.first_name}}'s Profile</button>
+                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <li><a class="dropdown-item" href="#">Update</a></li>
+                            <li><a class="dropdown-item" href="#" style="color: red;">Delete Account</a></li>
+                        </ul>
+                    </div>
                     <a href="/user/logout" class="btn btn-danger">Logout</a>
                 </div>
             </nav>
@@ -51,78 +58,88 @@
                     <p id="flash">{{message}}</p>
                 {% endfor %}
             </div>
-            <div class="accounts">
-                <h2>Accounts</h2>
-                <table class="table table-striped table-hover" >
-                    <thead>
-                        <tr>
-                            <th>Account Number</th>
-                            <th>Type</th>
-                            <th>Balance</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for account in account_list: %}
-                        <tr>
-                            <td>{{account.account_number}}</td>
-                            <td>{{account.account_type}}</td>
-                            <td>{{account.balance}}</td>
-                            <td>
-                                <a href="#" class="btn btn-primary" id="view">Details</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <br>
-                <h2>Loans</h2>
-                <table class="table table-striped table-hover" >
-                    <thead>
-                        <tr>
-                            <th>Loan Number</th>
-                            <th>Type</th>
-                            <th>Balance</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for loan in loan_list: %}
-                        <tr>
-                            <td>{{loan.loan_number}}</td>
-                            <td>{{loan.account_type}}</td>
-                            <td>{{loan.balance}}</td>
-                            <td>
-                                <a href="#" class="btn btn-primary" id="view">Details</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <br>
-                <h2>Cards</h2>
-                <table class="table table-striped table-hover" >
-                    <thead>
-                        <tr>
-                            <th>Card Number</th>
-                            <th>Type</th>
-                            <th>Balance</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for card in card_list: %}
-                        <tr>
-                            <td>{{card.card_number}}</td>
-                            <td>{{card.card_type}}</td>
-                            <td>{{card.current_balance}}</td>
-                            <td>
-                                <a href="#" class="btn btn-primary" id="view">Details</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+            <div class="content">
+                <div class="accounts">
+                    <h2>Accounts</h2>
+                    <table class="table table-striped table-hover" >
+                        <thead>
+                            <tr>
+                                <th>Account Number</th>
+                                <th>Type</th>
+                                <th>Balance</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for account in account_list: %}
+                            <tr>
+                                <td>{{account.account_number}}</td>
+                                <td>{{account.account_type}}</td>
+                                <td>{{account.balance}}</td>
+                                <td>
+                                    <a href="#" class="btn btn-primary" id="view">Details</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <br>
+                    <h2>Loans</h2>
+                    <table class="table table-striped table-hover" >
+                        <thead>
+                            <tr>
+                                <th>Loan Number</th>
+                                <th>Type</th>
+                                <th>Balance</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for loan in loan_list: %}
+                            <tr>
+                                <td>{{loan.loan_number}}</td>
+                                <td>{{loan.account_type}}</td>
+                                <td>{{loan.balance}}</td>
+                                <td>
+                                    <a href="#" class="btn btn-primary" id="view">Details</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <br>
+                    <h2>Cards</h2>
+                    <table class="table table-striped table-hover" >
+                        <thead>
+                            <tr>
+                                <th>Card Number</th>
+                                <th>Type</th>
+                                <th>Balance</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for card in card_list: %}
+                            <tr>
+                                <td>{{card.card_number}}</td>
+                                <td>{{card.card_type}}</td>
+                                <td>{{card.current_balance}}</td>
+                                <td>
+                                    <a href="#" class="btn btn-primary" id="view">Details</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="actions">
+                    <h1>Actions</h1>
+                    <a href="#" class="btn btn-primary">Transfer</a>
+                    <br>
+                    <a href="#" class="btn btn-success">Deposit</a>
+                    <br>
+                    <a href="#" class="btn btn-info">Pay A Bill</a>
+                </div>
             </div>
             <div class="history">
                 <h1>Activity</h1>

@@ -44,19 +44,19 @@
     color: white;
 }
 
-#exp_date, #credit_limit, #current_balance {
+#exp_date, #credit_limit, #current_balance, #maturity_date {
     width: 200px;
 }
 
-#ccv, #interest_rate {
+#ccv, #interest_rate, #apr {
     width: 150px;
 }
 
-#card_number, #purchase_apr, #balance {
+#card_number, #purchase_apr, #balance, #amount {
     width: 250px;
 }
 
-#account_number {
+#account_number, #loan_number {
     width: 300px;
 }
 
