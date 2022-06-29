@@ -83,10 +83,11 @@
     padding: 40px;
     background-color: lightgray;
     height: 275px;
-    width: 310px;
+    width: 240px;
     border-radius: 25px;
     margin-top: 0px;
-    margin-right: 60px;
+    margin-right: 150px;
+    margin-left: 30px;
 }
 
 .actions a {
