@@ -111,6 +111,8 @@ def create_account():
 
 @app.route("/new_account", methods = ['POST'])
 def create_product():
+    print(session['type'])
+    print(request.form)
     if session['type'] == "Credit Card":
         data = {
             "card_type" : request.form['card_type'],
@@ -130,7 +132,7 @@ def create_product():
         }
         Form.update_status(data3)
         return redirect("/admin/dashboard")
-    if session['type'] == "Checking" or "Savings":
+    if session['type'] == "Checking" or session['type'] == "Savings":
         data1 = {
             "account_type" : request.form['account_type'],
             "account_number" : request.form['account_number'],
@@ -145,7 +147,7 @@ def create_product():
         }
         Form.update_status(data4)
         return redirect("/admin/dashboard")
-    if session['type'] == "Auto" or "Personal" or "Mortgage":
+    if session['type'] == "Auto" or session['type'] == "Personal" or session['type'] == "Mortgage":
         data2 = {
             "account_type" : request.form['account_type'],
             "loan_number" : request.form['loan_number'],
