@@ -52,3 +52,23 @@ class Account:
         result = connectToMySQL(DATABASE).query_db(query, data)
 
         return result
+
+    @classmethod
+    def deposit_account(cls, data):
+        query =  "UPDATE accounts "
+        query += "SET balance = balance + %(amount)s "
+        query += "WHERE id = %(id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
+
+    @classmethod
+    def withdraw_account(cls, data):
+        query =  "UPDATE accounts "
+        query += "SET balance = balance - %(amount)s "
+        query += "WHERE id = %(id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result

@@ -118,3 +118,30 @@
 #denied {
     color: red;
 }
+
+.money {
+    padding: 40px;
+    background-color: lightgray;
+    width: 500px;
+    left: 50%;
+    margin-left: -250px;
+    top: 50%;
+    margin-top: -250px;
+    border: 3px solid black;
+    border-radius: 25px;
+    position: absolute;
+    text-align: left;
+    display: none;
+}
+
+
+
+#submit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#nvm {
+    margin-right: 0px;
+}

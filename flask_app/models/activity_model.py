@@ -7,7 +7,7 @@ class Activity:
         self.id = data['id']
         self.type = data['type']
         self.from_account = data['from_account']
-        self.to = data['to']
+        self.to_account = data['to_account']
         self.amount = data['amount']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
@@ -19,7 +19,7 @@ class Activity:
         query += "FROM activities "
         query += "WHERE users_id = %(users_id)s;"
 
-        results = connectToMySQL(DATABASE).query_db(query, data)
+        result = connectToMySQL(DATABASE).query_db(query, data)
 
         activity_list = []
 
@@ -30,12 +30,12 @@ class Activity:
         return activity_list
     
     @classmethod
-    def add_avtivity(cls, data):
-        query =  "INSERT INTO activities(type, from_account, to, amount, users_id) "
-        query += "VALUES(%(type)s, %(from_account)s, %(to)s, %(amount)s, %(users_id)s);"
+    def add_activity(cls, data):
+        query =  "INSERT INTO activities(type, from_account, to_account, amount, users_id) "
+        query += "VALUES(%(type)s, %(from_account)s, %(to_account)s, %(amount)s, %(users_id)s);"
 
         results = connectToMySQL(DATABASE).query_db(query, data)
 
-        return result
+        return results
 
 

@@ -6,6 +6,7 @@ from flask_app.models.card_model import Card
 from flask_app.models.account_model import Account
 from flask_app.models.loan_model import Loan
 from flask_app.models.form_model import Form
+from flask_app.models.activity_model import Activity
 
 
 @app.route("/")
@@ -127,9 +128,6 @@ def login_user():
         return redirect("/user/dashboard/")
 
 
-
-
-
 @app.route("/user/dashboard/")
 def user_dashboard():
     if User.validate_session():
@@ -138,9 +136,10 @@ def user_dashboard():
         }
         card_list = Card.get_cards(data)
         account_list = Account.get_accounts(data)
+        activity_list = Activity.show_all_activity(data)
         loan_list = Loan.get_loans(data)
         form_list = Form.user_list_one(data)
-        return render_template("user/userDashboard.html", card_list = card_list, account_list = account_list, loan_list = loan_list, form_list = form_list)
+        return render_template("user/userDashboard.html", card_list = card_list, account_list = account_list, activity_list = activity_list, loan_list = loan_list, form_list = form_list)
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/user/login")
@@ -160,4 +159,63 @@ def user_card_request():
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/user/login")
+
+@app.route("/transfer", methods = ['POST'])
+def user_transfer():
+    from_data = request.form['from_account']
+    from_data = from_data.split("-")
+    data = {
+        "id" : from_data[0],
+        "amount" : request.form['amount']
+    }
+    Account.withdraw_account(data)
+    to_data = request.form['to_account']
+    to_data = to_data.split("-")
+    data1 = {
+        "id" : to_data[0],
+        "amount" : request.form['amount']
+    }
+    Account.deposit_account(data1)
+    data2 = {
+        "type" : request.form['type'],
+        "from_account" : from_data[1],
+        "to_account" : to_data[1],
+        "amount" : request.form['amount'],
+        "users_id" : session['id']
+    }
+    Activity.add_activity(data2)
+    return redirect("/user/dashboard")
+
+@app.route("/pay", methods = ['POST'])
+def user_pay():
+    from_data = request.form['from_account']
+    from_data = from_data.split("-")
+    to_data = request.form['to_account']
+    to_data = to_data.split("-")
+    data = {
+        "id" : from_data[0],
+        "amount" : request.form['amount']
+    }
+    Account.withdraw_account(data)
+    if to_data[1] == "Credit Card":
+        data1 = {
+        "id" : to_data[0],
+        "amount" : request.form['amount']
+        }
+        Card.update_balance_card(data1)
+    if to_data[1] == "Auto" or to_data[1] == "Personal" or to_data[1] == "Mortgage":
+        data2 = {
+        "id" : to_data[0],
+        "amount" : request.form['amount']
+        }
+        Loan.update_balance_loan(data2)
+    data3 = {
+        "type" : request.form['type'],
+        "from_account" : from_data[1],
+        "to_account" : to_data[1],
+        "amount" : request.form['amount'],
+        "users_id" : session['id']
+    }
+    Activity.add_activity(data3)
+    return redirect("/user/dashboard")
 

@@ -37,3 +37,14 @@ class Loan:
                 loan_list.append(cls(loan))
         
         return loan_list
+
+
+    @classmethod
+    def update_balance_loan(cls, data):
+        query =  "UPDATE cards "
+        query += "SET balance = balance - %(amount)s "
+        query += "WHERE id = %(id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result

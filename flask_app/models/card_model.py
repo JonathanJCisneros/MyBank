@@ -44,6 +44,16 @@ class Card:
 
         return result
 
+    @classmethod
+    def update_balance_card(cls, data):
+        query =  "UPDATE cards "
+        query += "SET balance = balance - %(amount)s "
+        query += "WHERE id = %(id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
+
 
     @classmethod
     def delete_card(cls, data):
