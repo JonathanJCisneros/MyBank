@@ -1,13 +1,4 @@
-function openForm() {
-    document.getElementById("money").style.display = "block";
-}
-function closeForm() {
-    document.getElementById("money").style.display = "none";
-}
-
-function openForm1() {
-    document.getElementById("pay").style.display = "block";
-}
-function closeForm1() {
-    document.getElementById("pay").style.display = "none";
+let form = document.getElementById('register');
+document.getElementById('Update').onclick = function(){
+    form.classList.toggle('fade');
 }

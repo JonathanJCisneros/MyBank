@@ -17,7 +17,8 @@ class Activity:
     def show_all_activity(cls, data):
         query =  "SELECT * "
         query += "FROM activities "
-        query += "WHERE users_id = %(users_id)s;"
+        query += "WHERE users_id = %(users_id)s "
+        query += "ORDER BY created_at DESC;"
 
         result = connectToMySQL(DATABASE).query_db(query, data)
 

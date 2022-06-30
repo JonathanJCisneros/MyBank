@@ -134,8 +134,6 @@
     display: none;
 }
 
-
-
 #submit {
     display: flex;
     align-items: center;
@@ -144,4 +142,54 @@
 
 #nvm {
     margin-right: 0px;
+}
+
+.register {
+    width: 700px;
+    background-color: gray;
+    padding: 40px;
+    margin-top: 45px;
+    margin-bottom: 100px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 25px black;
+    position: absolute;
+    left: 50%;
+    margin-left: -350px;
+    top: 50%;
+    margin-top: -350px;
+    display: none;
+}
+
+.register h1 {
+    font-weight: bold;
+    color: blue;
+}
+
+#username, #password, #password_confirmation {
+    width: 350px;
+}
+
+#date_of_birth, #social_security, #annual_income {
+    width: 200px;
+}
+
+#employment_status {
+    width: 250px;
+}
+
+.register p {
+    color: rgb(219, 0, 0);
+}
+
+#register {
+    opacity: 1;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3 ease-in-out;
+}
+
+#register.fade {
+    opacity:0;
 }

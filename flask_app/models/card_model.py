@@ -47,7 +47,7 @@ class Card:
     @classmethod
     def update_balance_card(cls, data):
         query =  "UPDATE cards "
-        query += "SET balance = balance - %(amount)s "
+        query += "SET current_balance = current_balance - %(current_balance)s "
         query += "WHERE id = %(id)s;"
 
         result = connectToMySQL(DATABASE).query_db(query, data)

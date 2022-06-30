@@ -134,12 +134,17 @@ def user_dashboard():
         data = {
             "users_id" : session['id']
         }
+        data1 = {
+            "username" : session['username']
+        }
+        user_info = User.get_one(data1)
+        address_info = Address.get_address(data)
         card_list = Card.get_cards(data)
         account_list = Account.get_accounts(data)
         activity_list = Activity.show_all_activity(data)
         loan_list = Loan.get_loans(data)
         form_list = Form.user_list_one(data)
-        return render_template("user/userDashboard.html", card_list = card_list, account_list = account_list, activity_list = activity_list, loan_list = loan_list, form_list = form_list)
+        return render_template("user/userDashboard.html", user_info = user_info, address_info = address_info, card_list = card_list, account_list = account_list, activity_list = activity_list, loan_list = loan_list, form_list = form_list)
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/user/login")
@@ -200,7 +205,7 @@ def user_pay():
     if to_data[1] == "Credit Card":
         data1 = {
         "id" : to_data[0],
-        "amount" : request.form['amount']
+        "current_balance" : request.form['amount']
         }
         Card.update_balance_card(data1)
     if to_data[1] == "Auto" or to_data[1] == "Personal" or to_data[1] == "Mortgage":

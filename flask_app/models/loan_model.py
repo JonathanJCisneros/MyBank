@@ -41,7 +41,7 @@ class Loan:
 
     @classmethod
     def update_balance_loan(cls, data):
-        query =  "UPDATE cards "
+        query =  "UPDATE loans "
         query += "SET balance = balance - %(amount)s "
         query += "WHERE id = %(id)s;"
 

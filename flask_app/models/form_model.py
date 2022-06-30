@@ -57,7 +57,8 @@ class Form:
     def user_list_one(cls, data):
         query =  "SELECT * "
         query += "FROM forms "
-        query += "WHERE users_id = %(users_id)s;"
+        query += "WHERE users_id = %(users_id)s "
+        query += "ORDER BY created_at DESC;"
 
         result = connectToMySQL(DATABASE).query_db(query, data)
         

@@ -45,7 +45,7 @@
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{{session.first_name}}'s Profile</button>
                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <li><a class="dropdown-item" href="#">Update</a></li>
+                            <li><a class="dropdown-item" id="Update">Update</a></li>
                             <li><a class="dropdown-item" href="#" style="color: red;">Delete Account</a></li>
                         </ul>
                     </div>
@@ -138,7 +138,7 @@
                     <br>
                     <a onclick="openForm()" class="btn btn-primary">Transfer</a>
                     <br>
-                    <a onclick="openForm1()" class="btn btn-info">Pay A Balance</a>
+                    <a onclick="openForm()" class="btn btn-info">Pay A Balance</a>
                 </div>
             </div>
             <div class="history">
@@ -266,10 +266,185 @@
                     <input type="hidden" name="type" id="type" value="Pay Balance">
                     <div class="col-12" id="submit">
                         <button type="submit" class="btn btn-primary">Transaction</button>
-                        <a class="btn btn-danger" onclick="closeForm1()" id="nvm">Nahh..</a>
+                        <a class="btn btn-danger" onclick="closeForm()" id="nvm">Nahh..</a>
                     </div>
                 </form>
             </div>
+            <div class="register" id="register">
+                <h1>Let's get started!</h1>
+                <form class="row g-3" action="/user_update" method="POST">
+                    <div class="col-md-6">
+                        <label for="first_name" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" value="{{user_info.first_name}}">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_first_name"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="last_name" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" value="{{user_info.last_name}}">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_last_name"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-8">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="inputEmail4" name="email" value="{{user_info.email}}">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_email"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="phone_number" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone_number" name="phone_number" value="{{user_info.phone_number}}">
+                    </div>
+                    <div class="col-12">
+                        <label for="date_of_birth" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{user_info.date_of_birth}}">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_birth"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12">
+                        <label for="social_security" class="form-label">Social Security</label>
+                        <input type="text" class="form-control" id="social_security" name="social_security">
+                        <div id="socialHelp" class="form-text">We'll never share this with anyone.</div>
+                        {% for message in get_flashed_messages(category_filter = ["error_register_social"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12">
+                        <label for="employment_status" class="form-label">Employment Status</label>
+                        <select id="employment_status" class="form-select" name="employment_status">
+                            <option value="Choose..." {% if user_info.employment_status == 'Choose...' %} selected {% endif %}>Choose...</option>
+                            <option value="Full-Time" {% if user_info.employment_status == 'Full-Time' %} selected {% endif %}>Full-Time</option>
+                            <option value="Part-Time" {% if user_info.employment_status == 'Part-Time' %} selected {% endif %}>Part-Time</option>
+                            <option value="Self-Employed" {% if user_info.employment_status == 'Self-Employed' %} selected {% endif %}>Self-Employed</option>
+                            <option value="Unemployed" {% if user_info.employment_status == 'Unemployed' %} selected {% endif %}>Unemployed</option>
+                        </select>
+                        {% for message in get_flashed_messages(category_filter = ["error_register_employment"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12">
+                        <label for="annual_income" class="form-label">Annual Income</label>
+                        <input type="number" class="form-control" id="annual_income" name="annual_income" value="{{user_info.annual_income}}">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_income"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-9">
+                        <label for="street" class="form-label">Street</label>
+                        <input type="text" class="form-control" id="street" name="street" value="{{address_info.street}}">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_street"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                        <p>{{address_info.street}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="apt_suite_num" class="form-label">Apartment/Suite</label>
+                        <input type="text" class="form-control" id="apt_suite_num" name="apt_suite_num">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" name="city" value="{{address_info.city}}">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_city"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="state" class="form-label">State</label>
+                        <select id="state" class="form-select" name="state">
+                            <option value="{{address_info.state}}" selected>{{address_info.state}}</option>
+                            <option value="AL">AL</option>
+                            <option value="AK">AK</option>
+                            <option value="AR">AR</option>
+                            <option value="AZ">AZ</option>
+                            <option value="CA">CA</option>
+                            <option value="CO">CO</option>
+                            <option value="CT">CT</option>
+                            <option value="DC">DC</option>
+                            <option value="DE">DE</option>
+                            <option value="FL">FL</option>
+                            <option value="GA">GA</option>
+                            <option value="HI">HI</option>
+                            <option value="IA">IA</option>
+                            <option value="ID">ID</option>
+                            <option value="IL">IL</option>
+                            <option value="IN">IN</option>
+                            <option value="KS">KS</option>
+                            <option value="KY">KY</option>
+                            <option value="LA">LA</option>
+                            <option value="MA">MA</option>
+                            <option value="MD">MD</option>
+                            <option value="ME">ME</option>
+                            <option value="MI">MI</option>
+                            <option value="MN">MN</option>
+                            <option value="MO">MO</option>
+                            <option value="MS">MS</option>
+                            <option value="MT">MT</option>
+                            <option value="NC">NC</option>
+                            <option value="NE">NE</option>
+                            <option value="NH">NH</option>
+                            <option value="NJ">NJ</option>
+                            <option value="NM">NM</option>
+                            <option value="NV">NV</option>
+                            <option value="NY">NY</option>
+                            <option value="ND">ND</option>
+                            <option value="OH">OH</option>
+                            <option value="OK">OK</option>
+                            <option value="OR">OR</option>
+                            <option value="PA">PA</option>
+                            <option value="RI">RI</option>
+                            <option value="SC">SC</option>
+                            <option value="SD">SD</option>
+                            <option value="TN">TN</option>
+                            <option value="TX">TX</option>
+                            <option value="UT">UT</option>
+                            <option value="VT">VT</option>
+                            <option value="VA">VA</option>
+                            <option value="WA">WA</option>
+                            <option value="WI">WI</option>
+                            <option value="WV">WV</option>
+                            <option value="WY">WY</option>
+                        </select>
+                        {% for message in get_flashed_messages(category_filter = ["error_register_state"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="zipcode" class="form-label">Zip</label>
+                        <input type="text" class="form-control" id="zipcode" name="zipcode" value="{{address_info.zipcode}}">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_zip"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" value="{{user_info.username}}">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_username"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_password"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12">
+                        <label for="password_confirmation" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_password_confirmation"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12" id="submit">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        <a class="btn btn-danger" onclick="closeForm()" id="nvm">Nahh..</a>
+                    </div>
+                </form>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="{{url_for('static', filename='javascript/userDashboard.js')}}"></script>

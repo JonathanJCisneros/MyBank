@@ -20,3 +20,19 @@ class Address:
         result = connectToMySQL(DATABASE).query_db(query, data)
 
         return result
+
+    
+    @classmethod
+    def get_address(cls, data):
+        query =  "SELECT * "
+        query += "FROM addresses "
+        query += "WHERE users_id = %(users_id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        address_list = []
+
+        if len(result) > 0:
+            for address in result:
+                address_list.append(cls(address))        
+        return address_list
