@@ -140,7 +140,7 @@
     justify-content: space-between;
 }
 
-#nvm {
+.nvm {
     margin-right: 0px;
 }
 
@@ -179,17 +179,4 @@
 
 .register p {
     color: rgb(219, 0, 0);
-}
-
-#register {
-    opacity: 1;
-    -webkit-transition: opacity 0.3s ease-in-out;
-    -moz-transition: opacity 0.3s ease-in-out;
-    -ms-transition: opacity 0.3s ease-in-out;
-    -o-transition: opacity 0.3s ease-in-out;
-    transition: opacity 0.3 ease-in-out;
-}
-
-#register.fade {
-    opacity:0;
 }

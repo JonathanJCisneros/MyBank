@@ -45,7 +45,7 @@
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{{session.first_name}}'s Profile</button>
                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <li><a class="dropdown-item" id="Update">Update</a></li>
+                            <li><a class="dropdown-item" href="#" id="fade-in">Update</a></li>
                             <li><a class="dropdown-item" href="#" style="color: red;">Delete Account</a></li>
                         </ul>
                     </div>
@@ -136,9 +136,9 @@
                     <h1>Actions</h1>
                     <a href="#" class="btn btn-success">Deposit</a>
                     <br>
-                    <a onclick="openForm()" class="btn btn-primary">Transfer</a>
+                    <a href="#" onclick="openTheForm()" class="btn btn-primary">Transfer</a>
                     <br>
-                    <a onclick="openForm()" class="btn btn-info">Pay A Balance</a>
+                    <a href="#" onclick="openTheForm1()" class="btn btn-info">Pay A Balance</a>
                 </div>
             </div>
             <div class="history">
@@ -228,7 +228,7 @@
                     <input type="hidden" name="type" id="type" value="Transfer">
                     <div class="col-12" id="submit">
                         <button type="submit" class="btn btn-primary">Transfer</button>
-                        <a class="btn btn-danger" onclick="closeForm()" id="nvm">Nahh..</a>
+                        <a class="btn btn-danger nvm" onclick="closeTheForm()">Nahh..</a>
                     </div>
                 </form>
             </div>
@@ -266,7 +266,7 @@
                     <input type="hidden" name="type" id="type" value="Pay Balance">
                     <div class="col-12" id="submit">
                         <button type="submit" class="btn btn-primary">Transaction</button>
-                        <a class="btn btn-danger" onclick="closeForm()" id="nvm">Nahh..</a>
+                        <a class="btn btn-danger nvm" onclick="closeTheForm1()">Nahh..</a>
                     </div>
                 </form>
             </div>
@@ -442,7 +442,7 @@
                     </div>
                     <div class="col-12" id="submit">
                         <button type="submit" class="btn btn-primary">Register</button>
-                        <a class="btn btn-danger" onclick="closeForm()" id="nvm">Nahh..</a>
+                        <a class="btn btn-danger nvm" href="#" id="fade-out">Nahh..</a>
                     </div>
                 </form>
         </div>
