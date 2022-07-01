@@ -172,6 +172,7 @@ def user_card_request():
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/user/login")
 
+
 @app.route("/transfer", methods = ['POST'])
 def user_transfer():
     from_data = request.form['from_account']
@@ -201,6 +202,7 @@ def user_transfer():
         }
         Activity.add_activity(data2)
         return redirect("/user/dashboard")
+
 
 @app.route("/pay", methods = ['POST'])
 def user_pay():
