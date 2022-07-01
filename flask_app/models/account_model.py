@@ -11,6 +11,14 @@ class Account:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.users_id = data['users_id']
+        self.formatted_balance = "${:,}".format(self.balance)
+
+    def account_number_display(self):
+        output = "******"
+        last_four = str(self.account_number)[-4:]
+        output += last_four
+        return output
+        
 
     @classmethod
     def get_accounts(cls, data):

@@ -33,14 +33,14 @@
             <br>
             <h3>Employment Status: {{form.employment_status}}</h3>
             <br>
-            <h3>Annual Income: {{form.annual_income}}</h3>
+            <h3>Annual Income: ${{form.annual_income}}</h3>
             <br>
             <h1>Address:</h1>
             <h3>{{form.street}} </h3>{% if form.apt_suite_num != 'None' %} <h3>{{form.apt_suite_num}}</h3> {% endif %}
             <h3>{{form.city}}, {{form.state}} {{form.zipcode}}</h3>
             {% if form.amount > 0: %}
                 <br>
-                <h3>Amount: {{form.amount}}</h3>
+                <h3>Amount: ${{form.amount}}</h3>
                 <br>
             {% endif %}
             <h1>Identity Verification:</h1>

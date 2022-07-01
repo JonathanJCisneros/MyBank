@@ -48,11 +48,11 @@
     width: 200px;
 }
 
-#ccv, #interest_rate, #apr {
+#ccv, #interest_rate, #apr, #purchase_apr {
     width: 150px;
 }
 
-#card_number, #purchase_apr, #balance, #amount {
+#card_number,  #balance, #amount {
     width: 250px;
 }
 
@@ -66,4 +66,13 @@
 
 #inputGroupFile02 {
     width: 350px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
 }

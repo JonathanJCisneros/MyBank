@@ -32,9 +32,15 @@ class Address:
 
         result = connectToMySQL(DATABASE).query_db(query, data)
 
-        address_list = []
+        return cls(result[0])
 
-        if len(result) > 0:
-            for address in result:
-                address_list.append(cls(address))        
-        return address_list
+    @classmethod
+    def update_address(cls, data):
+        query =  "UPDATE addresses "
+        query += "SET street = %(street)s, apt_suite_num = %(apt_suite_num)s, city = %(city)s, state = %(state)s, zipcode = %(zipcode)s "
+        query += "WHERE users_id = %(users_id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
+

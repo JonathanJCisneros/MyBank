@@ -21,6 +21,7 @@
                 <form class="row g-3" action="/new_account" method="POST">
                     <div class="col-12">
                         <h3> Client: {{session.user_first}} {{session.user_last}}</h3>
+                        <h4>Income: ${{session.annual_income}}</h4>
                     </div>
                     {% if account_type == 'Credit Card': %}
                     <div class="col-12">
@@ -37,15 +38,15 @@
                     </div>
                     <div class="col-12">
                         <label for="credit_limit" class="form-label">Credit Limit</label>
-                        <input type="number" class="form-control" id="credit_limit" name="credit_limit">
+                        <input type="number" class="form-control" id="credit_limit" name="credit_limit" min="0">
                     </div>
                     <div class="col-12">
                         <label for="current_balance" class="form-label">Current Balance</label>
-                        <input type="number" class="form-control" id="current_balance" name="current_balance">
+                        <input type="number" class="form-control" id="current_balance" name="current_balance" min="0">
                     </div>
                     <div class="col-12">
                         <label for="purchase_apr" class="form-label">Purchase APR</label>
-                        <input type="number" class="form-control" id="purchase_apr" name="purchase_apr">
+                        <input type="number" class="form-control" id="purchase_apr" name="purchase_apr" step="any" min="0">
                     </div>
                     <input type="hidden" name="pin" value="0000">
                     <input type="hidden" name="card_type" value="{{session.type}}">
@@ -56,11 +57,11 @@
                     </div>
                     <div class="col-12">
                         <label for="interest_rate">Interest Rate</label>
-                        <input type="number" class="form-control" name="interest_rate" id="interest_rate">
+                        <input type="number" class="form-control" name="interest_rate" id="interest_rate" step="any", min="0">
                     </div>
                     <div class="col-12">
                         <label for="balance">Balance</label>
-                        <input type="number" class="form-control" name="balance" id="balance">
+                        <input type="number" class="form-control" name="balance" id="balance" value="{{session.amount}}">
                     </div>
                     <input type="hidden" name="account_type" value="{{session.type}}">
                     {% elif account_type == 'Auto' or account_type == 'Personal' or account_type == 'Mortgage': %}
@@ -70,11 +71,11 @@
                     </div>
                     <div class="col-12">
                         <label for="balance">Balance</label>
-                        <input type="number" class="form-control" name="balance" id="balance">
+                        <input type="number" class="form-control" name="balance" id="balance" value="{{session.amount}}">
                     </div>
                     <div class="col-12">
                         <label for="apr">APR</label>
-                        <input type="number" class="form-control" name="apr" id="apr">
+                        <input type="number" class="form-control" name="apr" id="apr" step="any" min="0">
                     </div>
                     <div class="col-12">
                         <label for="maturity_date" class="form-label">Maturity Date</label>

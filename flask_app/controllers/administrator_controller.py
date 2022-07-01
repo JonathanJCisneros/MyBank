@@ -5,8 +5,9 @@ from flask_app.models.form_model import Form
 from flask_app.models.card_model import Card
 from flask_app.models.account_model import Account
 from flask_app.models.loan_model import Loan
+from flask_bcrypt import Bcrypt
 
-
+bcrypt = Bcrypt(app)
 
 @app.route("/admin")
 def display_admin_register():
@@ -27,7 +28,7 @@ def register_admin():
                 "first_name" : request.form['first_name'],
                 "last_name" : request.form['last_name'],
                 "email" : request.form['email'],
-                "password" : request.form['password'],
+                "password" : bcrypt.generate_password_hash(request.form['password']),
                 "pin" : request.form['pin']
             }
             admin_id = Administrator.add_one(data)
@@ -56,13 +57,17 @@ def login():
         flash("Wrong Cridentials", "error_login")
         return redirect("/admin")
     else:
-        session['admin_id'] = result.id
-        session['title'] = result.title
-        session['first_name'] = result.first_name
-        session['last_name'] = result.last_name
-        session['email'] = result.email
-        session['pin'] = result.pin
-        return redirect("/admin/dashboard")
+        if not bcrypt.check_password_hash(result.password, request.form['password']):
+            flash("Wrong Cridentials", "error_login")
+            return redirect("/admin")
+        else:
+            session['admin_id'] = result.id
+            session['title'] = result.title
+            session['first_name'] = result.first_name
+            session['last_name'] = result.last_name
+            session['email'] = result.email
+            session['pin'] = result.pin
+            return redirect("/admin/dashboard")
 
 
 @app.route("/admin/dashboard")
@@ -93,6 +98,8 @@ def view_form(id):
         session['users_id'] = form.users_id
         session['user_first'] = form.first_name
         session['user_last'] = form.last_name
+        session['amount'] = form.amount
+        session['annual_income'] = form.annual_income
         session['form_id'] = form.id
         return render_template("admin/adminView.html", form = form)
     else:

@@ -79,6 +79,20 @@
     border-radius: 25px;
 }
 
+.head {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.head div {
+    font-weight: bold;
+}
+
+#t3 {
+    margin-right: 100px;
+}
+
 .actions {
     padding: 40px;
     background-color: lightgray;
@@ -180,3 +194,4 @@
 .register p {
     color: rgb(219, 0, 0);
 }
+

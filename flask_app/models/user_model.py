@@ -48,6 +48,17 @@ class User:
 
         return result
 
+    @classmethod
+    def update_user(cls, data):
+        query = "UPDATE users "
+        query += "SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s, phone_number = %(phone_number)s, date_of_birth = %(date_of_birth)s, social_security = %(social_security)s, employment_status = %(employment_status)s, annual_income = %(annual_income)s, username = %(username)s, password = %(password)s "
+        query += "WHERE id = %(id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
+
+
     @staticmethod
     def validate_register(data):
         isValid = True

@@ -12,6 +12,8 @@ class Activity:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.users_id = data['users_id']
+        self.formatted_amount = "${:,}".format(self.amount)
+        self.format_create = self.created_at.strftime(" %B %d, %Y - %I:%M%p")
 
     @classmethod
     def show_all_activity(cls, data):
@@ -29,6 +31,8 @@ class Activity:
                 activity_list.append(cls(activity))
         
         return activity_list
+
+
     
     @classmethod
     def add_activity(cls, data):

@@ -7,6 +7,9 @@ from flask_app.models.account_model import Account
 from flask_app.models.loan_model import Loan
 from flask_app.models.form_model import Form
 from flask_app.models.activity_model import Activity
+from flask_bcrypt import Bcrypt
+
+bcrypt = Bcrypt(app)
 
 
 @app.route("/")
@@ -79,7 +82,7 @@ def register_user():
                 "employment_status" : request.form['employment_status'],
                 "annual_income" : request.form['annual_income'],
                 "username" : request.form['username'],
-                "password" : request.form['password']
+                "password" : bcrypt.generate_password_hash(request.form['password'])
             }
             User.create_user(data)
             user = User.get_one(data)
@@ -121,11 +124,15 @@ def login_user():
         flash("Wrong Cridentials", "error_login")
         return redirect("/user/login")
     else:
-        session['id'] = result.id
-        session['first_name'] = result.first_name
-        session['last_name'] = result.last_name
-        session['username'] = result.username
-        return redirect("/user/dashboard/")
+        if not bcrypt.check_password_hash(result.password, request.form['password']):
+            flash("Wrong Cridentials", "error_login")
+            return redirect("/user/login")
+        else:
+            session['id'] = result.id
+            session['first_name'] = result.first_name
+            session['last_name'] = result.last_name
+            session['username'] = result.username
+            return redirect("/user/dashboard/")
 
 
 @app.route("/user/dashboard/")
@@ -224,3 +231,29 @@ def user_pay():
     Activity.add_activity(data3)
     return redirect("/user/dashboard")
 
+@app.route("/user_update", methods= ['POST'])
+def update_user_info():
+    data = {
+        "id" : session['id'],
+        "first_name" : request.form['first_name'],
+        "last_name" : request.form['last_name'],
+        "email" : request.form['email'],
+        "phone_number" : request.form['phone_number'],
+        "date_of_birth" : request.form['date_of_birth'],
+        "social_security" : request.form['social_security'],
+        "employment_status" : request.form['employment_status'],
+        "annual_income" : request.form['annual_income'],
+        "username" : request.form['username'],
+        "password" : bcrypt.generate_password_hash(request.form['password'])
+    }
+    User.update_user(data)
+    data1 = {
+        "street" : request.form['street'],
+        "apt_suite_num" : request.form['apt_suite_num'],
+        "city" : request.form['city'],
+        "state" : request.form['state'],
+        "zipcode" : request.form['zipcode'],
+        "users_id" : session['id']
+    }
+    Address.update_address(data1)
+    return redirect("/user/dashboard/")
