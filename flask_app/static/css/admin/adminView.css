@@ -29,12 +29,14 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    box-shadow: 0px 0px 40px black;
+    background-color: #f7f7ff;
+    box-shadow: 0px 0px 2px #ceced3
 }
 
 .header h1 {
-    font-size: 60px;
-    color: yellow;
+    font-size: 40px;
+    color: darkblue;
+    font-weight: bold;
 }
 
 #subtitle {
@@ -73,4 +75,8 @@
     height: 200px;
     width: 350px;
     margin-left: 20px;
+}
+
+#home {
+    margin-right: 20px;
 }

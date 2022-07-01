@@ -37,6 +37,8 @@ class Form:
         self.users_id = data['users_id']
         self.administrators_id = data['administrators_id']
         self.format_income = "${:,}".format(self.annual_income)
+        self.format_amount = "${:,}".format(self.amount)
+        self.format_birth = self.date_of_birth.strftime(" %B %d, %Y")
 
     
     @classmethod

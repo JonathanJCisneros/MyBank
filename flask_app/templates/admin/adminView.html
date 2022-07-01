@@ -15,7 +15,6 @@
             </div>
             <div class="header">
                 <h1>Form review</h1>
-                <p>(notifications)</p>
                 <div>
                     <a href="/admin/dashboard" class="btn btn-secondary" id="home">Dashboard</a>
                     <a href="/admin/logout" class="btn btn-danger">Logout</a>
@@ -27,7 +26,7 @@
             <br>
             <h3>Last Name: {{form.last_name}}</h3>
             <br>
-            <h3>Date of Birth: {{form.date_of_birth}}</h3>
+            <h3>Date of Birth: {{form.format_birth}}</h3>
             <br>
             <h3>Social Security: {{form.social_security}}</h3>
             <br>
@@ -40,7 +39,7 @@
             <h3>{{form.city}}, {{form.state}} {{form.zipcode}}</h3>
             {% if form.amount > 0: %}
                 <br>
-                <h3>Amount: ${{form.amount}}</h3>
+                <h3>Amount: {{form.format_amount}}</h3>
                 <br>
             {% endif %}
             <h1>Identity Verification:</h1>

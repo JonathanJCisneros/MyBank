@@ -48,7 +48,7 @@
 
 .register {
     width: 500px;
-    background-color: rgb(165, 165, 165);
+    background-color: #a8a8b0;
     padding: 40px;
     margin-top: 45px;
     margin-bottom: 100px;
@@ -91,7 +91,7 @@
 
 .login {
     width: 500px;
-    background-color: rgb(165, 165, 165);
+    background-color: #a8a8b0;
     padding: 40px;
     margin-top: 45px;
     margin-bottom: 100px;

@@ -31,12 +31,12 @@
 
 .register {
     width: 700px;
-    background-color: gray;
+    background-color: #a8a8b0;
     padding: 40px;
     margin-top: 45px;
     margin-bottom: 100px;
     border-radius: 15px;
-    box-shadow: 0px 0px 25px black;
+    box-shadow: 0px 0px 15px black;
 }
 
 .register h1 {
