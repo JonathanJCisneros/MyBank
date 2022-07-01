@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-12">
                         <label for="social_security" class="form-label">Social Security</label>
-                        <input type="text" class="form-control" id="social_security" name="social_security">
+                        <input type="password" class="form-control" id="social_security" name="social_security">
                         <div id="socialHelp" class="form-text">We'll never share this with anyone.</div>
                         {% for message in get_flashed_messages(category_filter = ["error_register_social"]): %}
                             <p>{{message}}</p>
