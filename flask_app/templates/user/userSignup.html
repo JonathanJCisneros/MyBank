@@ -47,14 +47,14 @@
                     </div>
                     <div class="col-12">
                         <label for="date_of_birth" class="form-label">Date of Birth</label>
-                        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
+                        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" max="2004-06-30">
                         {% for message in get_flashed_messages(category_filter = ["error_register_birth"]): %}
                             <p>{{message}}</p>
                         {% endfor %}
                     </div>
                     <div class="col-12">
                         <label for="social_security" class="form-label">Social Security</label>
-                        <input type="text" class="form-control" id="social_security" name="social_security">
+                        <input type="password" class="form-control" id="social_security" name="social_security">
                         <div id="socialHelp" class="form-text">We'll never share this with anyone.</div>
                         {% for message in get_flashed_messages(category_filter = ["error_register_social"]): %}
                             <p>{{message}}</p>
@@ -160,7 +160,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="zipcode" class="form-label">Zipcode</label>
-                        <input type="text" class="form-control" id="zipcode" name="zipcode">
+                        <input type="number" class="form-control" id="zipcode" name="zipcode">
                         {% for message in get_flashed_messages(category_filter = ["error_register_zip"]): %}
                             <p>{{message}}</p>
                         {% endfor %}

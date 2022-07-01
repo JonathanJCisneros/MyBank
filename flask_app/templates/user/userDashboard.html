@@ -57,6 +57,12 @@
                 {% for message in get_flashed_messages(category_filter = ["request_received"]): %}
                     <p id="flash">{{message}}</p>
                 {% endfor %}
+                {% for message in get_flashed_messages(category_filter = ["error_transfer"]): %}
+                    <h3 id="transfer">{{message}}</h3>
+                {% endfor %}
+                {% for message in get_flashed_messages(category_filter = ["error_pay"]): %}
+                    <h3 id="transfer">{{message}}</h3>
+                {% endfor %}
             </div>
             <div class="content">
                 <div class="accounts">
@@ -66,6 +72,9 @@
                         <div id="t2">Account Number</div>
                         <div id="t3">Balance</div>
                     </div>
+                    {% if account_list|length == 0: %}
+                        <p id="none">No Accounts to Show</p>
+                    {% endif %}
                     <div class="accordion accordian-flush" id="accordionExample">
                         {% for account in account_list: %}
                         <div class="accordion-item">
@@ -88,6 +97,9 @@
                         <div id="t2">Loan Number</div>
                         <div id="t3">Balance</div>
                     </div>
+                    {% if loan_list|length == 0: %}
+                        <p id="none">No Loans to Show</p>
+                    {% endif %}
                     <div class="accordion accordian-flush" id="accordionExample">
                         {% for loan in loan_list: %}
                         <div class="accordion-item">
@@ -110,6 +122,9 @@
                         <div id="t2">Card Number</div>
                         <div id="t3">Balance</div>
                     </div>
+                    {% if card_list|length == 0: %}
+                        <p id="none">No Accounts to Show</p>
+                    {% endif %}
                     <div class="accordion accordian-flush" id="accordionExample">
                         {% for card in card_list: %}
                         <div class="accordion-item">
@@ -138,74 +153,81 @@
             </div>
             <div class="history">
                 <h1>Activity</h1>
-                <table class="table table-striped table-hover" >
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for activity in activity_list: %}
-                        <tr>
-                            <td>{{activity.type}}</td>
-                            <td>{{activity.from_account}}</td>
-                            <td>{{activity.to_account}}</td>
-                            <td>{{activity.formatted_amount}}</td>
-                            <td>{{activity.format_create}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                <div id="scroll">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for activity in activity_list: %}
+                            <tr>
+                                <td>{{activity.type}}</td>
+                                <td>{{activity.from_account}}</td>
+                                <td>{{activity.to_account}}</td>
+                                <td>{{activity.formatted_amount}}</td>
+                                <td>{{activity.format_create}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if account_list|length == 0: %}
+                        <p id="none">No Activity to Show</p>
+                    {% endif %}
+                </div>
             </div>
             <div class="forms">
                 <h1>Forms</h1>
-                <table class="table table-striped table-hover" >
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for form in form_list: %}
-                        <tr>
-                            <td>{{form.type}}</td>
-                            {% if form.status == 'Approved': %}
-                                <td id="approved">{{form.status}}</td>
-                            {% elif form.status == 'Denied': %}
-                                <td id="denied">{{form.status}}</td>
-                            {% else: %}
-                                <td>{{form.status}}</td>
-                            {% endif %}
-                            <td>
-                                <a href="#" class="btn btn-primary" id="view">Details</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                <div id="hidden">
+                    <table class="table table-striped table-hover" >
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for form in form_list: %}
+                            <tr>
+                                <td>{{form.type}}</td>
+                                {% if form.status == 'Approved': %}
+                                    <td id="approved">{{form.status}}</td>
+                                {% elif form.status == 'Denied': %}
+                                    <td id="denied">{{form.status}}</td>
+                                {% else: %}
+                                    <td>{{form.status}}</td>
+                                {% endif %}
+                                <td>
+                                    <a href="#" class="btn btn-primary" id="view">Details</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="money" id="money">
                 <form action="/transfer" method="POST">
                     <h1>Transfer:</h1>
                     <div class="col-12">
                         <label for="from_account" class="form-label">From</label>
-                        <select class="form-select" aria-label="Default select example" name="from_account">
+                        <select class="form-select from" aria-label="Default select example" name="from_account">
                             <option selected>Choose Account</option>
                             {% for account in account_list: %}
-                            <option value="{{account.id}}-{{account.account_type}}">{{account.account_type}} - {{account.account_number_display()}}</option>
+                            <option value="{{account.id}}-{{account.account_type}}-{{account.balance}}">{{account.account_type}} - {{account.account_number_display()}}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <br>
                     <div class="col-12">
                         <label for="to_account" class="form-label">To</label>
-                        <select class="form-select" aria-label="Default select example" name="to_account">
+                        <select class="form-select from" aria-label="Default select example" name="to_account">
                             <option selected>Choose Account</option>
                             {% for account in account_list: %}
                             <option value="{{account.id}}-{{account.account_type}}">{{account.account_type}} - {{account.account_number_display()}}</option>
@@ -215,7 +237,7 @@
                     <br>
                     <div class="col-12">
                         <label for="amount" class="form-label">Amount</label>
-                        <input type="number" class="form-control" id="amount" name="amount" placeholder="$">
+                        <input type="number" class="form-control" id="amount" name="amount" min="1" placeholder="$">
                     </div>
                     <br>
                     <input type="hidden" name="type" id="type" value="Transfer">
@@ -230,17 +252,17 @@
                     <h1>Pay a Balance:</h1>
                     <div class="col-12">
                         <label for="from_account" class="form-label">From</label>
-                        <select class="form-select" aria-label="Default select example" name="from_account">
+                        <select class="form-select from" aria-label="Default select example" class="from" name="from_account">
                             <option selected>Choose Account</option>
                             {% for account in account_list: %}
-                            <option value="{{account.id}}-{{account.account_type}}">{{account.account_type}} - {{account.account_number_display()}}</option>
+                            <option value="{{account.id}}-{{account.account_type}}-{{account.balance}}">{{account.account_type}} - {{account.account_number_display()}}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <br>
                     <div class="col-12">
                         <label for="to_account" class="form-label">To</label>
-                        <select class="form-select" aria-label="Default select example" name="to_account">
+                        <select class="form-select from" aria-label="Default select example" class="from" name="to_account">
                             <option selected>Choose Account</option>
                             {% for card in card_list: %}
                             <option value="{{card.id}}-{{card.card_type}}">{{card.card_type}} - {{card.card_number_display()}}</option>
@@ -253,7 +275,7 @@
                     <br>
                     <div class="col-12">
                         <label for="amount" class="form-label">Amount</label>
-                        <input type="number" class="form-control" id="amount" name="amount" placeholder="$">
+                        <input type="number" class="form-control" id="amount" name="amount" min="1" placeholder="$">
                     </div>
                     <br>
                     <input type="hidden" name="type" id="type" value="Pay Balance">
@@ -300,7 +322,7 @@
                     </div>
                     <div class="col-12">
                         <label for="social_security" class="form-label">Social Security</label>
-                        <input type="text" class="form-control" id="social_security" name="social_security">
+                        <input type="password" class="form-control" id="social_security" name="social_security">
                         <div id="socialHelp" class="form-text">We'll never share this with anyone.</div>
                         {% for message in get_flashed_messages(category_filter = ["error_register_social"]): %}
                             <p>{{message}}</p>

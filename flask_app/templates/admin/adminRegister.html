@@ -61,14 +61,14 @@
                     <br>
                     <label for="password" class="form-label">Password:</label>
                     <br>
-                    <input type="text" name="password" class="form-control">
+                    <input type="password" name="password" class="form-control">
                     {% for message in get_flashed_messages(category_filter = ["error_register_password"]): %}
                         <p>{{message}}</p>
                     {% endfor %}
                     <br>
                     <label for="password_confirmation" class="form-label">Confirm Password:</label>
                     <br>
-                    <input type="text" name="password_confirmation" class="form-control">
+                    <input type="password" name="password_confirmation" class="form-control">
                     {% for message in get_flashed_messages(category_filter = ["error_register_password_confirmation"]): %}
                         <p>{{message}}</p>
                     {% endfor %}
@@ -111,7 +111,7 @@
                     <div>
                         <label for="password" class="form-label">Password:</label>
                         <br>
-                        <input type="text" id="password" name="password" class="form-control">
+                        <input type="password" id="password" name="password" class="form-control">
                     </div>
                     <br>
                     <br>

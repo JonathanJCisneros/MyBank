@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-12">
                         <label for="date_of_birth" class="form-label">Date of Birth</label>
-                        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
+                        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" max="2004-06-30">
                         {% for message in get_flashed_messages(category_filter = ["error_register_birth"]): %}
                             <p>{{message}}</p>
                         {% endfor %}

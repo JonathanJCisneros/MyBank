@@ -176,60 +176,68 @@ def user_card_request():
 def user_transfer():
     from_data = request.form['from_account']
     from_data = from_data.split("-")
-    data = {
-        "id" : from_data[0],
-        "amount" : request.form['amount']
-    }
-    Account.withdraw_account(data)
-    to_data = request.form['to_account']
-    to_data = to_data.split("-")
-    data1 = {
-        "id" : to_data[0],
-        "amount" : request.form['amount']
-    }
-    Account.deposit_account(data1)
-    data2 = {
-        "type" : request.form['type'],
-        "from_account" : from_data[1],
-        "to_account" : to_data[1],
-        "amount" : request.form['amount'],
-        "users_id" : session['id']
-    }
-    Activity.add_activity(data2)
-    return redirect("/user/dashboard")
+    if from_data[2] < request.form['amount']:
+        flash("Not enough funds for transfer!", "error_transfer")
+        return redirect("/user/dashboard")
+    else:
+        data = {
+            "id" : from_data[0],
+            "amount" : request.form['amount']
+        }
+        Account.withdraw_account(data)
+        to_data = request.form['to_account']
+        to_data = to_data.split("-")
+        data1 = {
+            "id" : to_data[0],
+            "amount" : request.form['amount']
+        }
+        Account.deposit_account(data1)
+        data2 = {
+            "type" : request.form['type'],
+            "from_account" : from_data[1],
+            "to_account" : to_data[1],
+            "amount" : request.form['amount'],
+            "users_id" : session['id']
+        }
+        Activity.add_activity(data2)
+        return redirect("/user/dashboard")
 
 @app.route("/pay", methods = ['POST'])
 def user_pay():
-    from_data = request.form['from_account']
-    from_data = from_data.split("-")
-    to_data = request.form['to_account']
-    to_data = to_data.split("-")
-    data = {
-        "id" : from_data[0],
-        "amount" : request.form['amount']
-    }
-    Account.withdraw_account(data)
-    if to_data[1] == "Credit Card":
-        data1 = {
-        "id" : to_data[0],
-        "current_balance" : request.form['amount']
+    fro_data = request.form['from_account']
+    fro_data = fro_data.split("-")
+    if fro_data[2] < request.form['amount']:
+        flash("Not enough funds for payment!", "error_pay")
+        return redirect("/user/dashboard")
+    else:
+        t_data = request.form['to_account']
+        t_data = t_data.split("-")
+        data = {
+            "id" : fro_data[0],
+            "amount" : request.form['amount']
         }
-        Card.update_balance_card(data1)
-    if to_data[1] == "Auto" or to_data[1] == "Personal" or to_data[1] == "Mortgage":
-        data2 = {
-        "id" : to_data[0],
-        "amount" : request.form['amount']
+        Account.withdraw_account(data)
+        if t_data[1] == "Credit Card":
+            data1 = {
+            "id" : t_data[0],
+            "current_balance" : request.form['amount']
+            }
+            Card.update_balance_card(data1)
+        if t_data[1] == "Auto" or t_data[1] == "Personal" or t_data[1] == "Mortgage":
+            data2 = {
+            "id" : t_data[0],
+            "amount" : request.form['amount']
+            }
+            Loan.update_balance_loan(data2)
+        data3 = {
+            "type" : request.form['type'],
+            "from_account" : fro_data[1],
+            "to_account" : t_data[1],
+            "amount" : request.form['amount'],
+            "users_id" : session['id']
         }
-        Loan.update_balance_loan(data2)
-    data3 = {
-        "type" : request.form['type'],
-        "from_account" : from_data[1],
-        "to_account" : to_data[1],
-        "amount" : request.form['amount'],
-        "users_id" : session['id']
-    }
-    Activity.add_activity(data3)
-    return redirect("/user/dashboard")
+        Activity.add_activity(data3)
+        return redirect("/user/dashboard")
 
 @app.route("/user_update", methods= ['POST'])
 def update_user_info():

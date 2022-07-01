@@ -5,9 +5,9 @@
 }
 
 .container {
-    background-color: #4533c6;
+    background-color: #336FA1;
     padding: 40px 0px;
-    box-shadow: 0px 0px 100px black;
+    box-shadow: 0px 0px 10px black;
 }
 
 #title {
@@ -26,8 +26,8 @@
 }
 
 #navbar {
-    background-color: #5243c9;
-    box-shadow: 0px 0px 30px black;
+    background-color: #f7f7ff;
+    box-shadow: 0px 0px 2px #ceced3;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,7 +65,7 @@
 }
 
 .left h2 {
-    color: green;
+    color: limegreen;
     font-weight: bold;
 }
 
