@@ -44,3 +44,13 @@ class Address:
 
         return result
 
+    
+    @classmethod
+    def delete_address(cls, data):
+        query =  "DELETE FROM addresses "
+        query += "WHERE users_id = %(users_id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
+

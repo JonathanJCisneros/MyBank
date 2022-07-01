@@ -21,7 +21,7 @@
                 <form class="row g-3" action="/new_account" method="POST">
                     <div class="col-12">
                         <h3> Client: {{session.user_first}} {{session.user_last}}</h3>
-                        <h4>Income: ${{session.annual_income}}</h4>
+                        <h4>Income: {{"${:,}".format(session.annual_income)}}</h4>
                     </div>
                     {% if account_type == 'Credit Card': %}
                     <div class="col-12">

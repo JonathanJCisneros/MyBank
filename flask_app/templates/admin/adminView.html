@@ -33,7 +33,7 @@
             <br>
             <h3>Employment Status: {{form.employment_status}}</h3>
             <br>
-            <h3>Annual Income: ${{form.annual_income}}</h3>
+            <h3>Annual Income: {{form.format_income}}</h3>
             <br>
             <h1>Address:</h1>
             <h3>{{form.street}} </h3>{% if form.apt_suite_num != 'None' %} <h3>{{form.apt_suite_num}}</h3> {% endif %}

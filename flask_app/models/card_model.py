@@ -64,9 +64,9 @@ class Card:
 
 
     @classmethod
-    def delete_card(cls, data):
+    def delete_cards(cls, data):
         query =  "DELETE FROM cards "
-        query += "WHERE card_number = %(card_number)s;"
+        query += "WHERE users_id = %(users_id)s;"
 
         result = connectToMySQL(DATABASE).query_db(query, data)
 

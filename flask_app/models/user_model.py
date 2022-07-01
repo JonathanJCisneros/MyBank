@@ -58,6 +58,16 @@ class User:
 
         return result
 
+    
+    @classmethod
+    def delete_one(cls, data):
+        query =  "DELETE FROM users "
+        query += "WHERE id = %(id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
+
 
     @staticmethod
     def validate_register(data):

@@ -257,3 +257,22 @@ def update_user_info():
     }
     Address.update_address(data1)
     return redirect("/user/dashboard/")
+
+
+@app.route("/delete_all", methods= ['POST'])
+def delete_user():
+    data = {
+        "users_id" : session['id']
+    }
+    data1 = {
+        "id" : session['id']
+    }
+    Address.delete_address(data)
+    Card.delete_cards(data)
+    Account.delete_accounts(data)
+    Form.delete_forms(data)
+    Loan.delete_loans(data)
+    Activity.delete_activity(data)
+    User.delete_one(data1)
+    session.clear()
+    return redirect("/home")

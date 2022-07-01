@@ -36,6 +36,7 @@ class Form:
         self.updated_at = data['updated_at']
         self.users_id = data['users_id']
         self.administrators_id = data['administrators_id']
+        self.format_income = "${:,}".format(self.annual_income)
 
     
     @classmethod
@@ -102,6 +103,16 @@ class Form:
         query += "WHERE id = %(id)s;"
 
         return connectToMySQL(DATABASE).query_db(query, data)
+
+    
+    @classmethod
+    def delete_forms(cls, data):
+        query =  "DELETE FROM forms "
+        query += "WHERE users_id = %(users_id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
 
 
     @staticmethod

@@ -44,3 +44,13 @@ class Activity:
         return results
 
 
+    @classmethod
+    def delete_activity(cls, data):
+        query =  "DELETE FROM activities "
+        query += "WHERE users_id = %(users_id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
+
+
