@@ -76,3 +76,11 @@ function openTheForm1() {
 function closeTheForm1() {
     document.getElementById("pay").style.display = "none";
 }
+
+function openTheForm2() {
+    document.getElementById("deposit").style.display = "block";
+}
+
+function closeTheForm2() {
+    document.getElementById("deposit").style.display = "none";
+}

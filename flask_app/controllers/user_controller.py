@@ -208,6 +208,8 @@ def user_transfer():
 def user_pay():
     fro_data = request.form['from_account']
     fro_data = fro_data.split("-")
+    print(fro_data)
+    print(request.form['amount'])
     if fro_data[2] < request.form['amount']:
         flash("Not enough funds for payment!", "error_pay")
         return redirect("/user/dashboard")
@@ -239,6 +241,26 @@ def user_pay():
             "users_id" : session['id']
         }
         Activity.add_activity(data3)
+        return redirect("/user/dashboard")
+
+
+@app.route("/deposit", methods = ['POST'])
+def user_deposit():
+        to_data = request.form['to_account']
+        to_data = to_data.split("-")
+        data1 = {
+            "id" : to_data[0],
+            "amount" : request.form['amount']
+        }
+        Account.deposit_account(data1)
+        data2 = {
+            "type" : request.form['type'],
+            "from_account" : "Check",
+            "to_account" : to_data[1],
+            "amount" : request.form['amount'],
+            "users_id" : session['id']
+        }
+        Activity.add_activity(data2)
         return redirect("/user/dashboard")
 
 @app.route("/user_update", methods= ['POST'])
@@ -286,3 +308,4 @@ def delete_user():
     User.delete_one(data1)
     session.clear()
     return redirect("/home")
+
