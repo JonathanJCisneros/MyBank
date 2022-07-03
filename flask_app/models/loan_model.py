@@ -13,7 +13,7 @@ class Loan:
         self.updated_at = data['updated_at']
         self.users_id = data['users_id']
         self.formatted_balance = "${:,.2f}".format(self.balance)
-        self.format_exp = self.maturity_date.strftime(" %m/%y")
+        self.format_exp = self.maturity_date.strftime("%m - %Y")
 
     def loan_number_display(self):
         output = "******"
