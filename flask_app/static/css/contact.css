@@ -93,8 +93,9 @@ form input {
     margin-bottom: 3px;
 }
 
-form p {
-    color: green;
+#processed {
+    color: limegreen;
+    font-weight: bold;
 }
 
 
