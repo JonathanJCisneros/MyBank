@@ -21,10 +21,8 @@ class User:
         self.annual_income = data['annual_income']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.addresses = []
-        self.account_list = []
-        self.loan_list = []
-        self.card_list = []
+        self.format_create = self.created_at.strftime(" %B %d, %Y")
+        self.format_income = "${:,}".format(self.annual_income)
 
     @classmethod
     def get_one(cls, data):
@@ -38,6 +36,21 @@ class User:
             return cls(result[0])
         else:
             return None
+
+    @classmethod
+    def get_all(cls):
+        query =  "SELECT * "
+        query += "FROM users "
+        query += "ORDER BY created_at DESC;"
+
+        result = connectToMySQL(DATABASE).query_db(query)
+
+        user_list = []
+
+        for user in result:
+            user_list.append(cls(user))
+
+        return user_list
 
     @classmethod
     def create_user(cls, data):

@@ -1,10 +1,12 @@
 from flask import session, request, render_template, redirect, flash
 from flask_app import app
 from flask_app.models.administrator_model import Administrator
+from flask_app.models.user_model import User
 from flask_app.models.form_model import Form
 from flask_app.models.card_model import Card
 from flask_app.models.account_model import Account
 from flask_app.models.loan_model import Loan
+from flask_app.models.question_model import Question
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -74,7 +76,9 @@ def login():
 def display_dashboard():
     if Administrator.validate_session():
         forms = Form.list_all()
-        return render_template("admin/adminDashboard.html", forms = forms)
+        questions_list = Question.list_all()
+        user_list = User.get_all()
+        return render_template("admin/adminDashboard.html", forms = forms, questions_list = questions_list, user_list = user_list)
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/admin")
@@ -115,6 +119,17 @@ def create_account():
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/admin")
+
+
+@app.route("/deny/<int:id>")
+def deny_request(id):
+    data = {
+        "id" : id,
+        "status" : "Denied"
+    }
+    Form.update_status(data)
+    return redirect("/admin/dashboard")
+
 
 @app.route("/new_account", methods = ['POST'])
 def create_product():

@@ -7,7 +7,7 @@
 .container {
     background-color: #336FA1;
     padding: 40px 0px;
-    height: 100vh;
+    min-height: 100vh;
     box-shadow: 0px 0px 10px black;
 }
 
@@ -45,28 +45,39 @@
     margin-right: 20px;
 }
 
-.list {
+.requests {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.client {
     padding: 40px;
     background-color: rgb(237, 237, 237);
-    width: 1000px;
+    width: 550px;
     border-radius: 15px;
     margin-top: 50px;
     box-shadow: 0px 0px 10px black;
 }
 
-.list h1 {
-    color: green;
+.comment {
+    padding: 40px;
+    background-color: rgb(237, 237, 237);
+    width: 600px;
+    border-radius: 15px;
+    margin-top: 50px;
+    box-shadow: 0px 0px 10px black;
+}
+
+#client {
     font-weight: bold;
 }
 
-.table th {
-    font-size: 20px;
-}
-
-.table td {
-    font-weight: bold;
-}
-
-#view {
-    margin-right: 20px;
+.crm {
+    padding: 40px;
+    background-color: rgb(237, 237, 237);
+    width: 1230px;
+    border-radius: 15px;
+    margin-top: 50px;
+    box-shadow: 0px 0px 10px black;
 }

@@ -20,32 +20,123 @@
                     <a href="/admin/logout" class="btn btn-danger">Logout</a>
                 </div>
             </div>
-            <div class="list">
-                <h1>Client requests:</h1>
-                <table class="table table-striped table-hover" >
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Request Type</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for form in forms: %}
-                            {% if form.status == 'Pending': %}
-                            <tr>
-                                <td>{{form.first_name}} {{form.last_name}}</td>
-                                <td>{{form.type}}</td>
-                                <td>
-                                    <a href="/admin/view/{{form.id}}" class="btn btn-primary" id="view">View</a>
-                                    <a href="/deny/{{form.id}}" class="btn btn-danger">Deny</a>
-                                </td>
-                            </tr>
-                            {% endif %}
-                        {% endfor %}
-                    </tbody>
-                </table>
+            <div class="requests">
+                <div class="client">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" id="client" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Client Requests</button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <table class="table table-striped table-hover" >
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Request Type</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for form in forms: %}
+                                                {% if form.status == 'Pending': %}
+                                                <tr>
+                                                    <td>{{form.first_name}} {{form.last_name}}</td>
+                                                    <td>{{form.type}}</td>
+                                                    <td>
+                                                        <a href="/admin/view/{{form.id}}">View</a>
+                                                    </td>
+                                                </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" id="client" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Questions/Comments</button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <table class="table table-striped table-hover" >
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Date/Time</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for question in questions_list: %}
+                                                <tr>
+                                                    <td>{{question.first_name}} {{question.last_name}}</td>
+                                                    <td>{{question.format_create}}</td>
+                                                    <td>
+                                                        <a href="#">View</a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="crm">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Users</button>
+                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Accounts</button>
+                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Cards</button>
+                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Loans</button>
+                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Business Data</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                        <table class="table table-striped table-hover" >
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>Income</th>
+                                    <th>Since Joined</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in user_list: %}
+                                    <tr>
+                                        <td>{{user.first_name}}</td>
+                                        <td>{{user.last_name}}</td>
+                                        <td>{{user.username}}</td>
+                                        <td><a href="mailto:{{user.email}}">Email</a></td>
+                                        <td><a href="tel:{{user.phone_number}}">Call</a></td>
+                                        <td>{{user.format_income}}</td>
+                                        <td>{{user.format_create}}</td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">...</div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
+                    <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0">...</div>
+                </div>
             </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="{{url_for('static', filename='javascript/adminDashboard.js')}}"></script>
     </body>
 </html>

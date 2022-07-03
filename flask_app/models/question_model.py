@@ -13,6 +13,7 @@ class Question:
         self.comments = data['comments']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.format_create = self.created_at.strftime(" %B %d, %Y - %I:%M%p")
 
     @classmethod
     def add_question(cls, data):
@@ -22,6 +23,21 @@ class Question:
         result = connectToMySQL(DATABASE).query_db(query, data)
 
         return result
+
+    @classmethod
+    def list_all(cls):
+        query =  "SELECT * "
+        query += "FROM questions;"
+
+        result = connectToMySQL(DATABASE).query_db(query)
+
+        quest_list = []
+
+        if len(result) > 0:
+            for question in result:
+                quest_list.append(cls(question))
+
+        return quest_list
 
     @staticmethod
     def validate_message(data):
