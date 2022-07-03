@@ -17,7 +17,7 @@ class Card:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.users_id = data['users_id']
-        self.formatted_balance = "${:,}".format(self.current_balance)
+        self.formatted_balance = "${:,.2f}".format(self.current_balance)
         self.formatted_credit = "${:,}".format(self.credit_limit)
 
     def card_number_display(self):

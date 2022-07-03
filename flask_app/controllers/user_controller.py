@@ -7,6 +7,7 @@ from flask_app.models.account_model import Account
 from flask_app.models.loan_model import Loan
 from flask_app.models.form_model import Form
 from flask_app.models.activity_model import Activity
+from flask_app.models.question_model import Question
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -56,6 +57,21 @@ def display_about():
 @app.route("/contact")
 def display_contact():
     return render_template("contact.html")
+
+@app.route("/message", methods = ['POST'])
+def contact_message():
+    if Question.validate_message(request.form) == True:
+        data = {
+            "first_name" : request.form['first_name'],
+            "last_name" : request.form['last_name'],
+            "email" : request.form['email'],
+            "comments" : request.form['comments']
+        }
+        Question.add_question(data)
+        flash("Thank you for your message, we will get back to you shortly", "message_sent")
+        return redirect("/contact")
+    else:
+        return redirect("/contact")
 
 
 @app.route("/user/register")
@@ -206,10 +222,9 @@ def user_transfer():
 
 @app.route("/pay", methods = ['POST'])
 def user_pay():
+    # Note to self, there is an unexpected bug in this route where validation will kick in even though code is written properly. Will revisit later
     fro_data = request.form['from_account']
     fro_data = fro_data.split("-")
-    print(fro_data)
-    print(request.form['amount'])
     if fro_data[2] < request.form['amount']:
         flash("Not enough funds for payment!", "error_pay")
         return redirect("/user/dashboard")

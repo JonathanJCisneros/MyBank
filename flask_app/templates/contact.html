@@ -63,18 +63,30 @@
                     <div class="register">
                         <form  action="/message" method="POST">
                             <label for="first_name" class="form-label">First Name:</label>
-                            <input type="text" name="first_name" class="form-control" required>
+                            <input type="text" name="first_name" class="form-control">
+                            {% for message in get_flashed_messages(category_filter = ['error_message_first'])%}
+                                <p class="fail">{{message}}</p>
+                            {% endfor %}
                             <label for="last_name" class="form-label">Last Name:</label>
-                            <input type="text" name="last_name" class="form-control" required>
+                            <input type="text" name="last_name" class="form-control">
+                            {% for message in get_flashed_messages(category_filter = ['error_message_last'])%}
+                                <p class="fail">{{message}}</p>
+                            {% endfor %}
                             <label for="email" class="form-label">Email:</label>
                             <input type="email" name="email" class="form-control" placeholder="example@email.com">
+                            {% for message in get_flashed_messages(category_filter = ['error_message_email'])%}
+                                <p class="fail">{{message}}</p>
+                            {% endfor %}
                             <label for="comments" class="form-label">Questions</label>
                             <textarea class="form-control" name="comments" id="comments" rows="4" placeholder="Tell us what's on your mind..."></textarea>
+                            {% for message in get_flashed_messages(category_filter = ['error_message_comments'])%}
+                                <p class="fail">{{message}}</p>
+                            {% endfor %}
                             <br>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                         {% for message in get_flashed_messages(category_filter = ['message_sent'])%}
-                            <p>{{message}}</p>
+                            <p id="processed">{{message}}</p>
                         {% endfor %}
                     </div>
                 </div>

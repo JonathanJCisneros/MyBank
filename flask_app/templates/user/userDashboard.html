@@ -79,7 +79,7 @@
                         {% for account in account_list: %}
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{account.id}}" aria-expanded="true" aria-controls="collapse{{account.id}}"><span>{{account.account_type}}</span><span>{{account.account_number_display()}}</span><span>{{account.formatted_balance}}</span></button>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{account.id}}" aria-expanded="true" aria-controls="collapse{{account.id}}"><span style="margin-left: 40px;">{{account.account_type}}</span><span>{{account.account_number_display()}}</span><span style="margin-right: 0px;">{{account.formatted_balance}}</span></button>
                             </h2>
                             <div id="collapse{{account.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
@@ -104,7 +104,7 @@
                         {% for loan in loan_list: %}
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{loan.loan_number}}" aria-expanded="true" aria-controls="collapse{{loan.loan_number}}"><span>{{loan.account_type}}</span><span>{{loan.loan_number_display()}}</span><span>{{loan.formatted_balance}}</span></button>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{loan.loan_number}}" aria-expanded="true" aria-controls="collapse{{loan.loan_number}}"><span style="margin-left: 40px;">{{loan.account_type}}</span><span>{{loan.loan_number_display()}}</span><span style="margin-right: 0px;">{{loan.formatted_balance}}</span></button>
                             </h2>
                             <div id="collapse{{loan.loan_number}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
@@ -129,7 +129,7 @@
                         {% for card in card_list: %}
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{card.card_number}}" aria-expanded="true" aria-controls="collapse{{card.card_number}}"><span>{{card.card_type}}</span><span>{{card.card_number_display()}}</span><span>{{card.formatted_balance}}</span></button>
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{card.card_number}}" aria-expanded="true" aria-controls="collapse{{card.card_number}}"><span style="margin-left: 40px;">{{card.card_type}}</span><span>{{card.card_number_display()}}</span><span style="margin-right: 0px;">{{card.formatted_balance}}</span></button>
                             </h2>
                             <div id="collapse{{card.card_number}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
@@ -205,15 +205,15 @@
                                 {% endif %}
                                 {% if form.status == 'Approved': %}
                                     <td>
-                                        <button type="button" class="btn btn-lg btn-success" data-bs-toggle="popover" data-bs-placement="right" title="Congratulations!" data-bs-content="Your request has been completed, your dashboard should be updated!">View</button>
+                                        <button type="button" class="btn btn-success" data-bs-toggle="popover" data-bs-placement="left" title="Congratulations!" data-bs-content="Your request has been completed, your dashboard should be updated!">View</button>
                                     </td>
                                 {% elif form.status == 'Denied': %}
                                     <td>
-                                        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-placement="right" title="Yikes!" data-bs-content="Guess you don't qualify...">View</button>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="popover" data-bs-placement="right" title="Yikes!" data-bs-content="Guess you don't qualify...">View</button>
                                     </td>
                                 {% else: %}
                                     <td>
-                                        <button type="button" class="btn btn-lg btn-secondary" data-bs-toggle="popover" data-bs-placement="right" title="In Review" data-bs-content="We will get back to you shortly!">View</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-toggle="popover" data-bs-placement="right" title="In Review" data-bs-content="We will get back to you shortly!">View</button>
                                     </td>
                                 {% endif %}
                             </tr>
