@@ -13,6 +13,7 @@ class Loan:
         self.updated_at = data['updated_at']
         self.users_id = data['users_id']
         self.formatted_balance = "${:,.2f}".format(self.balance)
+        self.format_exp = self.maturity_date.strftime(" %m/%y")
 
     def loan_number_display(self):
         output = "******"
@@ -43,6 +44,21 @@ class Loan:
             for loan in result:
                 loan_list.append(cls(loan))
         
+        return loan_list
+
+    @classmethod
+    def get_all_loans(cls):
+        query =  "SELECT * "
+        query += "FROM loans "
+        query += "ORDER BY created_at DESC;"
+
+        result = connectToMySQL(DATABASE).query_db(query)
+
+        loan_list = []
+
+        for loan in result:
+            loan_list.append(cls(loan))
+
         return loan_list
 
 

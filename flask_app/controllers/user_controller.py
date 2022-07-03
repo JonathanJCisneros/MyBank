@@ -1,7 +1,6 @@
 from flask import session, request, render_template, redirect, flash
 from flask_app import app
 from flask_app.models.user_model import User
-from flask_app.models.administrator_model import Administrator
 from flask_app.models.address_model import Address
 from flask_app.models.card_model import Card
 from flask_app.models.account_model import Account

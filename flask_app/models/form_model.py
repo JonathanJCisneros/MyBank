@@ -38,6 +38,8 @@ class Form:
         self.administrators_id = data['administrators_id']
         self.format_income = "${:,}".format(self.annual_income)
         self.format_amount = "${:,}".format(self.amount)
+        self.format_social = re.sub(r'(\d{3})(\d{2})(\d{4})', r'\1-\2-\3', self.social_security)
+        self.format_number = re.sub(r'(\d{3})(\d{3})(\d{4})', r'(\1) \2-\3', self.phone_number)
         self.format_birth = self.date_of_birth.strftime(" %B %d, %Y")
 
     

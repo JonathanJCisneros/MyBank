@@ -12,6 +12,7 @@ class Account:
         self.updated_at = data['updated_at']
         self.users_id = data['users_id']
         self.formatted_balance = "${:,.2f}".format(self.balance)
+        self.format_create = self.created_at.strftime(" %B %d, %Y")
 
     def account_number_display(self):
         output = "******"
@@ -36,6 +37,22 @@ class Account:
         
         return account_list
 
+
+
+    @classmethod
+    def get_all_accounts(cls):
+        query =  "SELECT * "
+        query += "FROM accounts "
+        query += "ORDER BY created_at DESC;"
+
+        result = connectToMySQL(DATABASE).query_db(query)
+
+        account_list = []
+
+        for account in result:
+            account_list.append(cls(account))
+
+        return account_list
 
 
     @classmethod

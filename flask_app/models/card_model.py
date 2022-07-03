@@ -1,6 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import DATABASE
 from flask import flash
+import re
 
 
 class Card:
@@ -19,6 +20,7 @@ class Card:
         self.users_id = data['users_id']
         self.formatted_balance = "${:,.2f}".format(self.current_balance)
         self.formatted_credit = "${:,}".format(self.credit_limit)
+        self.format_exp = self.exp_date.strftime(" %m/%y")
 
     def card_number_display(self):
         output = "************"
@@ -61,6 +63,22 @@ class Card:
         result = connectToMySQL(DATABASE).query_db(query, data)
 
         return result
+
+    @classmethod
+    def get_all_cards(cls):
+        query =  "SELECT * "
+        query += "FROM cards "
+        query += "ORDER BY created_at DESC;"
+
+        result = connectToMySQL(DATABASE).query_db(query)
+
+        card_list = []
+
+        for card in result:
+            card_list.append(cls(card))
+
+        return card_list
+
 
 
     @classmethod

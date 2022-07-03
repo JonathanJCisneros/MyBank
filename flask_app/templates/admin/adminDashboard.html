@@ -93,23 +93,23 @@
             <div class="crm">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Users</button>
-                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Accounts</button>
-                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Cards</button>
-                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Loans</button>
-                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Business Data</button>
+                        <button class="nav-link active" id="nav-users-tab" data-bs-toggle="tab" data-bs-target="#nav-users" type="button" role="tab" aria-controls="nav-users" aria-selected="true">Users</button>
+                        <button class="nav-link" id="nav-accounts-tab" data-bs-toggle="tab" data-bs-target="#nav-accounts" type="button" role="tab" aria-controls="nav-accounts" aria-selected="false">Accounts</button>
+                        <button class="nav-link" id="nav-cards-tab" data-bs-toggle="tab" data-bs-target="#nav-cards" type="button" role="tab" aria-controls="nav-cards" aria-selected="false">Cards</button>
+                        <button class="nav-link" id="nav-loans-tab" data-bs-toggle="tab" data-bs-target="#nav-loans" type="button" role="tab" aria-controls="nav-loans" aria-selected="false">Loans</button>
+                        <button class="nav-link" id="nav-biz-tab" data-bs-toggle="tab" data-bs-target="#nav-biz" type="button" role="tab" aria-controls="nav-biz" aria-selected="false">Business Data</button>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                    <div class="tab-pane fade show active" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab" tabindex="0">
                         <table class="table table-striped table-hover" >
                             <thead>
                                 <tr>
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Username</th>
-                                    <th>Email</th>
                                     <th>Phone Number</th>
+                                    <th>Email</th>
                                     <th>Income</th>
                                     <th>Since Joined</th>
                                 </tr>
@@ -120,19 +120,91 @@
                                         <td>{{user.first_name}}</td>
                                         <td>{{user.last_name}}</td>
                                         <td>{{user.username}}</td>
+                                        <td><a href="tel:{{user.phone_number}}">{{user.format_number}}</a></td>
                                         <td><a href="mailto:{{user.email}}">Email</a></td>
-                                        <td><a href="tel:{{user.phone_number}}">Call</a></td>
                                         <td>{{user.format_income}}</td>
                                         <td>{{user.format_create}}</td>
                                     </tr>
-                                    {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">...</div>
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
-                    <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0">...</div>
+                    <div class="tab-pane fade" id="nav-accounts" role="tabpanel" aria-labelledby="nav-accounts-tab" tabindex="0">
+                        <table class="table table-striped table-hover" >
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Account Number</th>
+                                    <th>Interest Rate</th>
+                                    <th>Balance</th>
+                                    <th>Created</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for account in account_list: %}
+                                    <tr>
+                                        <td>{{account.account_type}}</td>
+                                        <td>{{account.account_number}}</td>
+                                        <td>{{account.interest_rate}}%</td>
+                                        <td>{{account.formatted_balance}}</td>
+                                        <td>{{account.format_create}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="nav-cards" role="tabpanel" aria-labelledby="nav-cards-tab" tabindex="0">
+                        <table class="table table-striped table-hover" >
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Card Number</th>
+                                    <th>Expiration Date</th>
+                                    <th>CCV</th>
+                                    <th>Current Balance</th>
+                                    <th>Credit Limit</th>
+                                    <th>Purchase APR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for card in card_list: %}
+                                    <tr>
+                                        <td>{{card.card_type}}</td>
+                                        <td>{{card.card_number}}</td>
+                                        <td>{{card.format_exp}}</td>
+                                        <td>{{card.ccv}}</td>
+                                        <td>{{card.formatted_balance}}</td>
+                                        <td>{{card.formatted_credit}}</td>
+                                        <td>{{card.purchase_apr}}%</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="nav-loans" role="tabpanel" aria-labelledby="nav-loans-tab" tabindex="0">
+                        <table class="table table-striped table-hover" >
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Account Number</th>
+                                    <th>APR</th>
+                                    <th>Balance</th>
+                                    <th>Maturity Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for loan in loan_list: %}
+                                    <tr>
+                                        <td>{{loan.account_type}}</td>
+                                        <td>{{loan.loan_number}}</td>
+                                        <td>{{loan.apr}}%</td>
+                                        <td>{{loan.formatted_balance}}</td>
+                                        <td>{{loan.maturity_date}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

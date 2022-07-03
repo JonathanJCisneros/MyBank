@@ -1,6 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import DATABASE
-from flask_app.controllers import user_controller
 from flask import flash, session
 import re
 
@@ -23,6 +22,7 @@ class User:
         self.updated_at = data['updated_at']
         self.format_create = self.created_at.strftime(" %B %d, %Y")
         self.format_income = "${:,}".format(self.annual_income)
+        self.format_number = re.sub(r'(\d{3})(\d{3})(\d{4})', r'(\1) \2-\3', self.phone_number)
 
     @classmethod
     def get_one(cls, data):

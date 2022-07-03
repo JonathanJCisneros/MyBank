@@ -1,7 +1,7 @@
 from flask import session, request, render_template, redirect, flash
 from flask_app import app
 from flask_app.models.administrator_model import Administrator
-from flask_app.models.user_model import User
+from flask_app.models import user_model
 from flask_app.models.form_model import Form
 from flask_app.models.card_model import Card
 from flask_app.models.account_model import Account
@@ -77,8 +77,11 @@ def display_dashboard():
     if Administrator.validate_session():
         forms = Form.list_all()
         questions_list = Question.list_all()
-        user_list = User.get_all()
-        return render_template("admin/adminDashboard.html", forms = forms, questions_list = questions_list, user_list = user_list)
+        user_list = user_model.User.get_all()
+        account_list = Account.get_all_accounts()
+        card_list = Card.get_all_cards()
+        loan_list = Loan.get_all_loans()
+        return render_template("admin/adminDashboard.html", forms = forms, questions_list = questions_list, user_list = user_list, account_list = account_list, card_list = card_list, loan_list = loan_list)
     else:
         flash("You must login to see this information", "error_not_logged_in")
         return redirect("/admin")
