@@ -92,3 +92,23 @@
     text-align: center;
 }
 
+#cookies {
+    padding: 40px;
+    background-color: rgb(165, 165, 165);
+    width: 1000px;
+    height: 300px;
+    left: 50%;
+    margin-left: -500px;
+    top: 50%;
+    margin-top: -150px;
+    box-shadow: 0px 0px 10px black;
+    border-radius: 15px;
+    position: fixed;
+    text-align: left;
+    display: block;
+}
+
+.right {
+    text-align: right;
+}
+
