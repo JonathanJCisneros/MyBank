@@ -27,7 +27,8 @@ class Question:
     @classmethod
     def list_all(cls):
         query =  "SELECT * "
-        query += "FROM questions;"
+        query += "FROM questions "
+        query += "WHERE status = 'Pending';"
 
         result = connectToMySQL(DATABASE).query_db(query)
 
@@ -38,6 +39,16 @@ class Question:
                 quest_list.append(cls(question))
 
         return quest_list
+
+    @classmethod
+    def update_status(cls, data):
+        query =  "UPDATE questions "
+        query += "SET status = 'Responded' "
+        query += "WHERE id = %(id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        return result
 
     @staticmethod
     def validate_message(data):

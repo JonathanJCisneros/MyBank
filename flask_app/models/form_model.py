@@ -46,7 +46,8 @@ class Form:
     @classmethod
     def list_all(cls):
         query =  "SELECT * "
-        query += "FROM forms;"
+        query += "FROM forms "
+        query += "WHERE status = 'Pending';"
 
         result = connectToMySQL(DATABASE).query_db(query)
 
