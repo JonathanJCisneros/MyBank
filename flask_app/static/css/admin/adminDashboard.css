@@ -81,28 +81,3 @@
     margin-top: 50px;
     box-shadow: 0px 0px 10px black;
 }
-
-.comments {
-    padding: 40px;
-    background-color: rgb(165, 165, 165);
-    width: 400px;
-    left: 50%;
-    margin-left: -250px;
-    top: 50%;
-    margin-top: -250px;
-    box-shadow: 0px 0px 10px black;
-    border-radius: 15px;
-    position: absolute;
-    text-align: left;
-    display: none;
-}
-
-.head {
-    text-align: center;
-}
-
-.answer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
