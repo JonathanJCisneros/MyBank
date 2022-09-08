@@ -81,3 +81,20 @@
     margin-top: 50px;
     box-shadow: 0px 0px 10px black;
 }
+
+.formTrue {
+    color: red;
+}
+
+.formFalse {
+    color: limegreen;
+}
+
+.questionTrue {
+    color: red;
+    margin-left: 5px;
+}
+
+.questionFalse {
+    color: limegreen;
+}

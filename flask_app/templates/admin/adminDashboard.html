@@ -27,9 +27,9 @@
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button collapsed" id="client" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Client Requests 
                                     {% if forms | length > 0: %}
-                                        <span style="color: red;">({{forms | length}})</span> 
+                                        <span class="formTrue">({{forms | length}})</span> 
                                     {% else: %} 
-                                        <span style="color: limegreen;">None for now</span>
+                                        <span class="formFalse">None for now</span>
                                     {% endif %}
                                 </button>
                             </h2>
@@ -68,9 +68,9 @@
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button collapsed" id="client" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Questions/Comments
                                     {% if questions_list | length > 0: %}
-                                        <span style="color: red; margin-left: 5px;">({{questions_list | length}})</span> 
+                                        <span class="questionTrue">({{questions_list | length}})</span> 
                                     {% else: %} 
-                                        <span style="color: limegreen;">None for now</span>
+                                        <span class="questionFalse">None for now</span>
                                     {% endif %}
                                 </button>
                             </h2>
