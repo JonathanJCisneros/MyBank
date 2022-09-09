@@ -26,74 +26,71 @@
                 <h2>Let's get registered:</h2>
                 <form  action="/admin_register" method="POST">
                     <div class="code">
-                        <label for="admin_password" class="form-label">Passcode:</label>
-                        <br>
+                        <label for="admin_password" class="form-label">Passcode</label>
                         <input type="text" name="admin_password" class="form-control">
                         {% for message in get_flashed_messages(category_filter = ["error_passcode"]): %}
                             <p id="pass-flash">{{message}}</p>
                         {% endfor %}
                     </div>
-                    <br>
-                    <label for="title" class="form-label">Title:</label>
-                    <br>
-                    <input type="text" name="title" class="form-control">
-                    <br>
-                    <label for="first_name" class="form-label">First Name:</label>
-                    <br>
-                    <input type="text" name="first_name" class="form-control">
-                    {% for message in get_flashed_messages(category_filter = ["error_register_first_name"]): %}
-                        <p>{{message}}</p>
-                    {% endfor %}
-                    <br>
-                    <label for="last_name" class="form-label">Last Name:</label>
-                    <br>
-                    <input type="text" name="last_name" class="form-control">
-                    {% for message in get_flashed_messages(category_filter = ["error_register_last_name"]): %}
-                        <p>{{message}}</p>
-                    {% endfor %}
-                    <br>
-                    <label for="email" class="form-label">Email:</label>
-                    <br>
-                    <input type="text" name="email" class="form-control">
-                    {% for message in get_flashed_messages(category_filter = ["error_register_email"]): %}
-                        <p>{{message}}</p>
-                    {% endfor %}
-                    <br>
-                    <label for="password" class="form-label">Password:</label>
-                    <br>
-                    <input type="password" name="password" class="form-control">
-                    {% for message in get_flashed_messages(category_filter = ["error_register_password"]): %}
-                        <p>{{message}}</p>
-                    {% endfor %}
-                    <br>
-                    <label for="password_confirmation" class="form-label">Confirm Password:</label>
-                    <br>
-                    <input type="password" name="password_confirmation" class="form-control">
-                    {% for message in get_flashed_messages(category_filter = ["error_register_password_confirmation"]): %}
-                        <p>{{message}}</p>
-                    {% endfor %}
-                    <br>
+                    <div class="registerRow">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" name="title" class="form-control">
+                    </div>
+                    <div class="registerRow">
+                        <label for="first_name" class="form-label">First Name</label>
+                        <input type="text" name="first_name" class="form-control">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_first_name"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="registerRow">
+                        <label for="last_name" class="form-label">Last Name</label>
+                        <input type="text" name="last_name" class="form-control">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_last_name"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="registerRow">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" name="email" class="form-control">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_email"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="registerRow">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_password"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="registerRow">
+                        <label for="password_confirmation" class="form-label">Confirm Password</label>
+                        <input type="password" name="password_confirmation" class="form-control">
+                        {% for message in get_flashed_messages(category_filter = ["error_register_password_confirmation"]): %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
                     <div class="row">
                         <div class="col">
                             <label for="pin" class="form-label">PIN:</label>
-                            <br>
                             <input type="number" name="pin" max="999999" class="form-control">
                             {% for message in get_flashed_messages(category_filter = ["error_register_pin"]): %}
                                 <p>{{message}}</p>
                             {% endfor %}
                         </div>
-                        <br>
                         <div class="col">
                             <label for="pin_confirm" class="form-label">Confirm PIN:</label>
-                            <br>
                             <input type="number" name="pin_confirm" max="999999" class="form-control">
                             {% for message in get_flashed_messages(category_filter = ["error_register_password_pin_confirm"]): %}
                                 <p>{{message}}</p>
                             {% endfor %}
                         </div>
                     </div>
-                    <br>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <div class="registerBtn">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                    
                 </form>
             </div>
             <div class="login">
@@ -102,20 +99,17 @@
                     <h2>{{message}}</h2>
                 {% endfor %}
                 <form  action="/admin_login" method="POST">
-                    <div>
+                    <div class="registerRow">
                         <label for="email" class="form-label">Email:</label>
-                        <br>
                         <input type="text" id="email" name="email" class="form-control">
                     </div>
-                    <br>
-                    <div>
+                    <div class="registerRow">
                         <label for="password" class="form-label">Password:</label>
-                        <br>
                         <input type="password" id="password" name="password" class="form-control">
                     </div>
-                    <br>
-                    <br>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <div class="registerBtn">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
                 </form>
             </div>    
         </div>

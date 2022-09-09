@@ -80,6 +80,11 @@
     font-weight: bold;
 }
 
+.registerRow {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
 .register label {
     color: yellow;
 }
@@ -87,6 +92,10 @@
 .register p {
     color: rgb(219, 0, 0);
     font-weight: bold;
+}
+
+.registerBtn {
+    margin-top: 20px;
 }
 
 .login {
