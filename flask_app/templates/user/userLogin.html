@@ -24,19 +24,21 @@
                 <form  action="/user_login" method="POST">
                     <div>
                         <label for="username" class="form-label">Username</label>
-                        <br>
                         <input type="text" id="username" name="username" class="form-control">
                     </div>
                     <br>
                     <div>
                         <label for="password" class="form-label">Password</label>
-                        <br>
                         <input type="password" id="password" name="password" class="form-control">
                     </div>
-                    <br>
-                    <a href="/user/register">Don't have an account? Sign up!</a>
-                    <br>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <div class="submit">
+                        <div>
+                            <a href="/user/register">Don't have an account? Sign up!</a>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="footer">
