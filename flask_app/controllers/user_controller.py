@@ -200,8 +200,7 @@ def request_form():
             "type" : request.form['type'],
             "amount" : request.form['amount'],
             "status" : request.form['status'],
-            "users_id" : request.form['users_id'],
-            "administrators_id" : request.form['administrators_id']
+            "users_id" : request.form['users_id']
         }
 
 

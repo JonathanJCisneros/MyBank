@@ -35,7 +35,6 @@ class Form:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.users_id = data['users_id']
-        self.administrators_id = data['administrators_id']
         self.format_income = "${:,}".format(self.annual_income)
         self.format_amount = "${:,}".format(self.amount)
         self.format_social = re.sub(r'(\d{3})(\d{2})(\d{4})', r'\1-\2-\3', self.social_security)
@@ -79,8 +78,8 @@ class Form:
 
     @classmethod
     def add_form(cls, data):
-        query =  "INSERT INTO forms(first_name, last_name, email, phone_number, date_of_birth, social_security, employment_status, annual_income, street, apt_suite_num, city, state, zipcode, status, type, amount, drivers_license, ssc, users_id, administrators_id) "
-        query += "VALUES(%(first_name)s, %(last_name)s, %(email)s, %(phone_number)s, %(date_of_birth)s, %(social_security)s, %(employment_status)s, %(annual_income)s, %(street)s, %(apt_suite_num)s, %(city)s, %(state)s, %(zipcode)s, %(status)s, %(type)s, %(amount)s, %(drivers_license)s, %(ssc)s, %(users_id)s, %(administrators_id)s);"
+        query =  "INSERT INTO forms(first_name, last_name, email, phone_number, date_of_birth, social_security, employment_status, annual_income, street, apt_suite_num, city, state, zipcode, status, type, amount, drivers_license, ssc, users_id) "
+        query += "VALUES(%(first_name)s, %(last_name)s, %(email)s, %(phone_number)s, %(date_of_birth)s, %(social_security)s, %(employment_status)s, %(annual_income)s, %(street)s, %(apt_suite_num)s, %(city)s, %(state)s, %(zipcode)s, %(status)s, %(type)s, %(amount)s, %(drivers_license)s, %(ssc)s, %(users_id)s);"
 
         result = connectToMySQL(DATABASE).query_db(query, data)
 
