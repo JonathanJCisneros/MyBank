@@ -51,6 +51,10 @@
 
 }
 
+.userName {
+    margin-bottom: 15px;
+}
+
 .login label {
     color: white;
 }

@@ -22,11 +22,10 @@
                     <h2>{{message}}</h2>
                 {% endfor %}
                 <form  action="/user_login" method="POST">
-                    <div>
+                    <div class="userName">
                         <label for="username" class="form-label">Username</label>
                         <input type="text" id="username" name="username" class="form-control">
                     </div>
-                    <br>
                     <div>
                         <label for="password" class="form-label">Password</label>
                         <input type="password" id="password" name="password" class="form-control">
