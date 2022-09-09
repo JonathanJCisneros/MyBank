@@ -89,16 +89,22 @@
     box-shadow: 0px 0px 10px black;
 }
 
+.formRow {
+    margin-top: 5px;
+}
+
 form input {
-    margin-bottom: 3px;
+    margin-bottom: 10px;
+}
+
+.submit {
+    margin-top: 20px;
 }
 
 #processed {
     color: limegreen;
     font-weight: bold;
 }
-
-
 
 .right {
     text-align: left;
