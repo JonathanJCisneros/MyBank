@@ -90,7 +90,6 @@
                         </div>
                         {% endfor %}
                     </div>
-                    <br>
                     <h2>Loans</h2>
                     <div class="head">
                         <div id="t1">Type</div>
@@ -115,7 +114,6 @@
                         </div>
                         {% endfor %}
                     </div>
-                    <br>
                     <h2>Cards</h2>
                     <div class="head">
                         <div id="t1">Type</div>
@@ -234,7 +232,6 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <br>
                     <div class="col-12">
                         <label for="to_account" class="form-label">To</label>
                         <select class="form-select from" aria-label="Default select example" name="to_account">
@@ -244,12 +241,10 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <br>
                     <div class="col-12">
                         <label for="amount" class="form-label">Amount</label>
                         <input type="number" class="form-control" id="amount" name="amount" min="1" placeholder="$">
                     </div>
-                    <br>
                     <input type="hidden" name="type" id="type" value="Transfer">
                     <div class="col-12" id="submit">
                         <button type="submit" class="btn btn-primary">Transfer</button>
@@ -269,7 +264,6 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <br>
                     <div class="col-12">
                         <label for="to_account" class="form-label">To</label>
                         <select class="form-select from" aria-label="Default select example" name="to_account">
@@ -282,12 +276,10 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <br>
                     <div class="col-12">
                         <label for="amount" class="form-label">Amount</label>
                         <input type="number" class="form-control" id="amount" name="amount" min="1" placeholder="$">
                     </div>
-                    <br>
                     <input type="hidden" name="type" id="type" value="Pay Balance">
                     <div class="col-12" id="submit">
                         <button type="submit" class="btn btn-primary">Transaction</button>
@@ -307,23 +299,19 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <br>
                     <div class="col-12">
                         <label for="amount" class="form-label">Amount</label>
                         <input type="number" class="form-control" id="amount" name="amount" min="1" placeholder="$">
                     </div>
-                    <br>
                     <p>Please add the images of your check</p>
                     <div class="col-12">
-                        <label for="check_front">Front of Check</label>
+                        <label for="check_front" class="form-label">Front of Check</label>
                         <input type="file" class="form-control" id="inputGroupFile02" name="check_front" accept="image/*" required>
                     </div>
-                    <br>
                     <div class="col-12">
-                        <label for="back_check">Back of Check</label>
+                        <label for="back_check" class="form-label">Back of Check</label>
                         <input type="file" class="form-control" id="inputGroupFile02" name="back_check" accept="image/*" required>
                     </div>
-                    <br>
                     <input type="hidden" name="type" id="type" value="Deposit">
                     <div class="col-12" id="submit">
                         <button type="submit" class="btn btn-primary">Deposit</button>

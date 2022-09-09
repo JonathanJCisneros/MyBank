@@ -72,6 +72,11 @@
     justify-content: space-between;
     padding: 50px 100px;
 }
+
+.accordion {
+    margin-bottom: 15px;
+}
+
 .accounts {
     padding: 40px;
     background-color: lightgray;
@@ -166,6 +171,10 @@
     position: absolute;
     text-align: left;
     display: none;
+}
+
+.money div {
+    margin-bottom: 15px;
 }
 
 #submit {
