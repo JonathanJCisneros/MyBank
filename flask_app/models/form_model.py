@@ -6,8 +6,6 @@ from werkzeug.utils import secure_filename
 import os
 import re
 
-app.config['UPLOAD_FOLDER'] = '/Users/jonat/OneDrive/Documents/Coding Dojo/Projects/myBank/myBank_app/flask_app/static/images/signUp'
-
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 
@@ -172,6 +170,6 @@ class Form:
             f = image
             file_name = f.filename
             file_name = secure_filename(f.filename)
-            f.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+            f.save(os.path.join(app.root_path, 'static', 'images', 'signUp', file_name))
 
 
